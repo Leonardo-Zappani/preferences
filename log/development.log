@@ -655,3 +655,107 @@ Entering TrainModeJob.save_accuracy function id: 102, accuracy: 93.6936936936936
   [1m[36mPrediction Update (9.6ms)[0m  [1m[33mUPDATE "predictions" SET "metric_1" = $1 WHERE "predictions"."id" = $2[0m  [["metric_1", "93.69369369369369"], ["id", 102]]
 Exiting TrainModeJob.save_accuracy
 Exiting TrainModeJob.perform function with model accuracy: 93.69369369369369
+Started GET "/predictions/new" for ::1 at 2025-05-23 23:17:39 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PredictionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/new.html.erb within layouts/application
+  Rendered predictions/new.html.erb within layouts/application (Duration: 3.8ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 125.1ms | GC: 8.8ms)
+Completed 200 OK in 253ms (Views: 128.8ms | ActiveRecord: 33.3ms (0 queries, 0 cached) | GC: 65.1ms)
+
+
+Started POST "/predictions" for ::1 at 2025-05-23 23:17:43 -0300
+Processing by PredictionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZdvBOw9QlR_0FSwPpFtPNO_o1NHI-7ApUE91jLsbKB0JJXrEz1GIIZM83rdYplNZevPcgBVMLTVdwrO_hnwkdg", "@prediction"=>{"height"=>"1", "weight"=>"2"}, "commit"=>"Submit"}
+Exiting Predict Function with Prediction: 0.0
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (3.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "prediction", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["height", "1.0"], ["weight", "2.0"], ["prediction", 0], ["created_at", "2025-05-24 02:17:43.164634"], ["updated_at", "2025-05-24 02:17:43.164634"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/predictions/103
+Completed 302 Found in 12ms (ActiveRecord: 5.1ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/predictions/103" for ::1 at 2025-05-23 23:17:43 -0300
+Processing by PredictionsController#show as HTML
+  Parameters: {"id"=>"103"}
+  [1m[36mPrediction Load (11.5ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 103], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/show.html.erb within layouts/application
+  Rendered predictions/show.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | GC: 0.5ms)
+Completed 200 OK in 35ms (Views: 12.2ms | ActiveRecord: 11.8ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started PUT "/predictions/103" for ::1 at 2025-05-23 23:18:17 -0300
+Processing by PredictionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xOZC17a91IcUwY8G_8eySVXvFAguaFMwkdYpbJEecvqoGPkodrzJuXPofb4DOq4kwPQcWfPfziycW-9frHl-kQ", "is_dog_person"=>"1", "id"=>"103"}
+Entering is_right_prediction Function with id: 103 and is_dog_person: 1
+  [1m[36mPrediction Load (0.4ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 103], ["LIMIT", 1]]
+  [1m[36mPrediction Update (7.3ms)[0m  [1m[33mUPDATE "predictions" SET "is_dog_person" = $1 WHERE "predictions"."id" = $2[0m  [["is_dog_person", 1], ["id", 103]]
+Exiting is_right_prediction Function with result: false
+  [1m[36mPrediction Load (1.9ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 103], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/learning.html.erb within layouts/application
+  Rendered predictions/learning.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.8ms | GC: 10.2ms)
+Completed 200 OK in 97ms (Views: 32.0ms | ActiveRecord: 36.8ms (3 queries, 0 cached) | GC: 11.4ms)
+
+
+Started GET "/predictions/new" for ::1 at 2025-05-23 23:18:18 -0300
+Processing by PredictionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/new.html.erb within layouts/application
+  Rendered predictions/new.html.erb within layouts/application (Duration: 3.4ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 22.0ms | GC: 2.5ms)
+Completed 200 OK in 24ms (Views: 22.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.5ms)
+
+
+Started POST "/predictions" for ::1 at 2025-05-23 23:18:20 -0300
+Processing by PredictionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"duLi2z6Ovq4mNOEKAIlnhHYsOGdcQcXXN40SP5elzkgaHFkk_o-jkEEdE7L8dHvp4zcwNoH2WMs6ANQMqsLCIw", "@prediction"=>{"height"=>"1", "weight"=>"23"}, "commit"=>"Submit"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+RuntimeError (Prediction: 0.0):
+  
+app/models/prediction.rb:25:in `predict'
+app/controllers/predictions_controller.rb:26:in `create'
+Entering TrainModeJob.perform function with id: 103,
+         height: 1.0, weight: 2.0, is_dog_person: 1
+Entering TrainModeJob.update_training_data function with
+          Height: 1.0, weight: 2.0, is_dog_person: 1
+Exiting TrainModeJob.update_training_data function
+Entering TrainModeJob.calculate_accuracy function
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (8233.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "preferences_development"[0m
+Exiting TrainModeJob.calculate_accuracy function
+          Accuracy_type = :LINEAR, nfold = 10 : 0.01
+Entering TrainModeJob.save_accuracy function id: 103, accuracy: 0.014714537963507945
+  [1m[36mPrediction Load (2.1ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 103], ["LIMIT", 1]]
+  [1m[36mPrediction Update (3.5ms)[0m  [1m[33mUPDATE "predictions" SET "metric_1" = $1 WHERE "predictions"."id" = $2[0m  [["metric_1", "0.01471453796350794"], ["id", 103]]
+Exiting TrainModeJob.save_accuracy
+Exiting TrainModeJob.perform function with model accuracy: 0.014714537963507945
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2555006879484865785)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to RemoveIsDogPersonFromPredictions (20250524022332)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.8ms)[0m  [1m[35mALTER TABLE "predictions" DROP COLUMN "is_dog_person"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250524022332') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddDiabetesFieldsToPredictions (20250524022334)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "predictions" ADD "gender" character varying[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "predictions" ADD "age" integer[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "predictions" ADD "dm_label" boolean[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250524022334') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2555006879484865785)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

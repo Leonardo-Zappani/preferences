@@ -16,13 +16,13 @@ class Prediction < ApplicationRecord
 
   # Predict classifier value based on input
   def predict(height, weight)
-    logger.debug("Entering Predict Function with Height: #{height} and weight: #{weight}")
-
     #load trained model from disk
     savedmodel = Libsvm::Model.load(File.join(Rails.root,PATH_TO_TRAINED_MODEL))
 
     # predict classifier result
-    prediction = savedmodel.predict(Libsvm::Node.features(height, weight))
+    prediction = savedmodel.predict(Libsvm::Node.features('male', '20', '92', '176'))
+
+    raise "Prediction: #{prediction.inspect}"
     logger.debug("Exiting Predict Function with Prediction: #{prediction}")
 
     return prediction
