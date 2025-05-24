@@ -99,3 +99,499 @@ DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `hea
 DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
 DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
 DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+DEPRECATION WARNING: The `cache_control` argument is deprecated,replaced by `headers: { 'Cache-Control' => {:index=>"index", :headers=>{}} }`,  and will be removed in Rails 5.1. (called from <top (required)> at /Users/leonardozappani/Documents/preferences/config/environment.rb:5)
+  [1m[35m (213.0ms)[0m  [1m[35mCREATE DATABASE "preferences_development" ENCODING = 'unicode'[0m
+  [1m[35m (73.8ms)[0m  [1m[35mCREATE DATABASE "firebolt_development" ENCODING = 'unicode'[0m
+  [1m[35m (18.1ms)[0m  [1m[35mCREATE DATABASE "firebolt_test" ENCODING = 'unicode'[0m
+  [1m[35m (504.3ms)[0m  [1m[35mCREATE DATABASE "preferences_development" ENCODING = 'unicode'[0m
+  [1m[35m (225.0ms)[0m  [1m[35mCREATE DATABASE "preferences_test" ENCODING = 'unicode'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "predictions" CASCADE[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "predictions" ("id" bigserial primary key, "height" decimal, "weight" decimal, "is_dog_person" integer, "prediction" integer, "metric_1" decimal, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20161209094000)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-05-24 01:39:24.076096', '2025-05-24 01:39:24.076099') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '1cf3f2eb7049f58a4dbb0190c5f7f5ea77f76816', '2025-05-24 01:39:24.079196', '2025-05-24 01:39:24.079197') RETURNING "key"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "predictions" CASCADE[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "predictions" ("id" bigserial primary key, "height" decimal, "weight" decimal, "is_dog_person" integer, "prediction" integer, "metric_1" decimal, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20161209094000)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-05-24 01:39:24.108386', '2025-05-24 01:39:24.108388') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-05-24 01:39:24.109414' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '1cf3f2eb7049f58a4dbb0190c5f7f5ea77f76816', '2025-05-24 01:39:24.110126', '2025-05-24 01:39:24.110127') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (1.9ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.7372207368562"], ["weight", "169.641736925312"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.182275"], ["updated_at", "2025-05-24 01:39:24.182275"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "70.3673141609706"], ["weight", "202.571580239465"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.185507"], ["updated_at", "2025-05-24 01:39:24.185507"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "72.0408340759254"], ["weight", "199.173600442789"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.186628"], ["updated_at", "2025-05-24 01:39:24.186628"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.9958641306279"], ["weight", "166.567359396403"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.187775"], ["updated_at", "2025-05-24 01:39:24.187775"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "71.5311788037522"], ["weight", "199.973543676069"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.188966"], ["updated_at", "2025-05-24 01:39:24.188966"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "69.6820883873604"], ["weight", "187.57605160974"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.190025"], ["updated_at", "2025-05-24 01:39:24.190025"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.9ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.1902380972063"], ["weight", "170.414340979886"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.191095"], ["updated_at", "2025-05-24 01:39:24.191095"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.8231541998584"], ["weight", "173.610736598779"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.192701"], ["updated_at", "2025-05-24 01:39:24.192701"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.8514183198708"], ["weight", "169.606859808599"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.193903"], ["updated_at", "2025-05-24 01:39:24.193903"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "74.0079626803179"], ["weight", "219.895739057804"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.194986"], ["updated_at", "2025-05-24 01:39:24.194986"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.3814354332932"], ["weight", "172.735908265385"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.196060"], ["updated_at", "2025-05-24 01:39:24.196060"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.9ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "69.8284492616355"], ["weight", "195.979019588875"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.197117"], ["updated_at", "2025-05-24 01:39:24.197117"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.6ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "70.1447629127649"], ["weight", "194.831395532055"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.198688"], ["updated_at", "2025-05-24 01:39:24.198688"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "71.7093075693084"], ["weight", "205.648449202477"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.200041"], ["updated_at", "2025-05-24 01:39:24.200041"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "67.5306062690097"], ["weight", "167.613776859818"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.201181"], ["updated_at", "2025-05-24 01:39:24.201181"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.8ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.0080674395092"], ["weight", "167.011632074001"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.202322"], ["updated_at", "2025-05-24 01:39:24.202322"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "67.445142662697"], ["weight", "165.27424487249"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.204022"], ["updated_at", "2025-05-24 01:39:24.204022"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.931795241309"], ["weight", "182.364295307144"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.205117"], ["updated_at", "2025-05-24 01:39:24.205117"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.3ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.5308350442977"], ["weight", "189.361395082828"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.206220"], ["updated_at", "2025-05-24 01:39:24.206220"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "71.1694471518134"], ["weight", "195.330595550546"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.207130"], ["updated_at", "2025-05-24 01:39:24.207130"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.7ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.9128309304113"], ["weight", "180.823137965411"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.208047"], ["updated_at", "2025-05-24 01:39:24.208047"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.4183342603759"], ["weight", "160.770308692432"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.214426"], ["updated_at", "2025-05-24 01:39:24.214426"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "70.4371769711896"], ["weight", "200.20473429455"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.215549"], ["updated_at", "2025-05-24 01:39:24.215549"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "71.2689307374579"], ["weight", "189.307461274244"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.216614"], ["updated_at", "2025-05-24 01:39:24.216614"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.3598105857093"], ["weight", "174.198289239276"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.217701"], ["updated_at", "2025-05-24 01:39:24.217701"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "73.3395900024196"], ["weight", "217.061053258419"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.218967"], ["updated_at", "2025-05-24 01:39:24.218967"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "72.3001903913442"], ["weight", "213.229451657476"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.220055"], ["updated_at", "2025-05-24 01:39:24.220055"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "74.043289756811"], ["weight", "219.337908800423"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.221120"], ["updated_at", "2025-05-24 01:39:24.221120"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.3028391832953"], ["weight", "193.702694008131"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.222172"], ["updated_at", "2025-05-24 01:39:24.222172"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.6ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.1423142899643"], ["weight", "171.616709864373"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.223210"], ["updated_at", "2025-05-24 01:39:24.223210"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "60.6141147615686"], ["weight", "156.458354816187"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.224402"], ["updated_at", "2025-05-24 01:39:24.224402"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.9744813993748"], ["weight", "192.129879968925"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.225413"], ["updated_at", "2025-05-24 01:39:24.225413"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "69.484562922529"], ["weight", "188.855205531895"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.226434"], ["updated_at", "2025-05-24 01:39:24.226434"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.0014131583689"], ["weight", "161.029415825707"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.227445"], ["updated_at", "2025-05-24 01:39:24.227445"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "70.2133754264451"], ["weight", "197.500019161713"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.228652"], ["updated_at", "2025-05-24 01:39:24.228652"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "64.9928915425001"], ["weight", "138.92417255949"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.229698"], ["updated_at", "2025-05-24 01:39:24.229698"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "71.6444188193627"], ["weight", "190.063285629929"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.230764"], ["updated_at", "2025-05-24 01:39:24.230764"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "72.6168163296781"], ["weight", "224.85790171382"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.231777"], ["updated_at", "2025-05-24 01:39:24.231777"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "71.0465619010339"], ["weight", "191.274561952476"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.232786"], ["updated_at", "2025-05-24 01:39:24.232786"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "72.7263417773615"], ["weight", "218.766293664343"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.233884"], ["updated_at", "2025-05-24 01:39:24.233884"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "69.1198305542332"], ["weight", "176.665959237319"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.234933"], ["updated_at", "2025-05-24 01:39:24.234933"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.9739418276205"], ["weight", "182.312208712821"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.235995"], ["updated_at", "2025-05-24 01:39:24.235995"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "71.5309776799117"], ["weight", "203.820261045102"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.237021"], ["updated_at", "2025-05-24 01:39:24.237021"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.3273367078766"], ["weight", "171.762517973172"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.238963"], ["updated_at", "2025-05-24 01:39:24.238963"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "73.0928708226033"], ["weight", "193.944180606132"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.240117"], ["updated_at", "2025-05-24 01:39:24.240117"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.8600624723444"], ["weight", "177.131052159944"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.241161"], ["updated_at", "2025-05-24 01:39:24.241161"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.973422833645"], ["weight", "159.285228223534"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.242172"], ["updated_at", "2025-05-24 01:39:24.242172"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "67.0137949681931"], ["weight", "199.195400076662"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.243174"], ["updated_at", "2025-05-24 01:39:24.243174"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "71.5577184876743"], ["weight", "185.905909489285"], ["is_dog_person", 1], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.244244"], ["updated_at", "2025-05-24 01:39:24.244244"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "58.9107320370127"], ["weight", "102.08832636784"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.245260"], ["updated_at", "2025-05-24 01:39:24.245260"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.2300125077128"], ["weight", "141.30582260142"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.246253"], ["updated_at", "2025-05-24 01:39:24.246253"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.3690037584139"], ["weight", "131.041402692995"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.247272"], ["updated_at", "2025-05-24 01:39:24.247272"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "64.4799974256081"], ["weight", "128.171511221632"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.248372"], ["updated_at", "2025-05-24 01:39:24.248372"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "61.7930961472815"], ["weight", "129.781407047572"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.249430"], ["updated_at", "2025-05-24 01:39:24.249430"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.9680189539591"], ["weight", "156.802082613991"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.250452"], ["updated_at", "2025-05-24 01:39:24.250452"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "62.8503786429821"], ["weight", "114.969038250962"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.251467"], ["updated_at", "2025-05-24 01:39:24.251467"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (1.1ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.6521564350254"], ["weight", "165.083001212576"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.252480"], ["updated_at", "2025-05-24 01:39:24.252480"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "61.8902337378544"], ["weight", "111.676199211845"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.254293"], ["updated_at", "2025-05-24 01:39:24.254293"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.6778681520585"], ["weight", "104.151559641935"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.255557"], ["updated_at", "2025-05-24 01:39:24.255557"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "68.1011722359871"], ["weight", "166.575660760601"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.256673"], ["updated_at", "2025-05-24 01:39:24.256673"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "61.7988785298549"], ["weight", "106.233686988457"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.257707"], ["updated_at", "2025-05-24 01:39:24.257707"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.3714589617276"], ["weight", "128.118169123676"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.258777"], ["updated_at", "2025-05-24 01:39:24.258777"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "58.8958863500041"], ["weight", "101.682613361014"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.259891"], ["updated_at", "2025-05-24 01:39:24.259891"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "58.4382490995692"], ["weight", "98.1926209281421"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.260890"], ["updated_at", "2025-05-24 01:39:24.260890"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "60.809798678611"], ["weight", "126.915463276282"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.261903"], ["updated_at", "2025-05-24 01:39:24.261903"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "70.1286528332314"], ["weight", "151.254270351714"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.262913"], ["updated_at", "2025-05-24 01:39:24.262913"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "62.2574296463807"], ["weight", "115.79739340816"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.264037"], ["updated_at", "2025-05-24 01:39:24.264037"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "61.7350902197"], ["weight", "107.866872355221"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.265058"], ["updated_at", "2025-05-24 01:39:24.265058"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.0595566947049"], ["weight", "145.589929145704"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.266060"], ["updated_at", "2025-05-24 01:39:24.266060"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "62.2868383725748"], ["weight", "139.522707668371"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.267058"], ["updated_at", "2025-05-24 01:39:24.267058"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "61.8274775548724"], ["weight", "122.766166670135"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.268074"], ["updated_at", "2025-05-24 01:39:24.268074"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.3475372155375"], ["weight", "157.380964816028"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.269249"], ["updated_at", "2025-05-24 01:39:24.269249"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.3206320269197"], ["weight", "145.037375621008"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.270288"], ["updated_at", "2025-05-24 01:39:24.270288"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.1038727954936"], ["weight", "148.645182574529"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.271303"], ["updated_at", "2025-05-24 01:39:24.271303"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "64.5271820296461"], ["weight", "132.680868243034"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.272356"], ["updated_at", "2025-05-24 01:39:24.272356"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "56.5479749809036"], ["weight", "84.8721236452797"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.273390"], ["updated_at", "2025-05-24 01:39:24.273390"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "62.7392809291012"], ["weight", "138.530421130127"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.274542"], ["updated_at", "2025-05-24 01:39:24.274542"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "61.585198645852"], ["weight", "137.425286781889"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.275846"], ["updated_at", "2025-05-24 01:39:24.275846"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "62.0244248323023"], ["weight", "124.603940620149"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.276919"], ["updated_at", "2025-05-24 01:39:24.276919"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.3113341377437"], ["weight", "140.266700393455"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.277965"], ["updated_at", "2025-05-24 01:39:24.277965"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "61.2049560689218"], ["weight", "108.290104228827"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.279144"], ["updated_at", "2025-05-24 01:39:24.279144"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "67.025093515345"], ["weight", "150.219175933031"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.280146"], ["updated_at", "2025-05-24 01:39:24.280146"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "60.2111665623754"], ["weight", "119.037534152405"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.281217"], ["updated_at", "2025-05-24 01:39:24.281217"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.9399727739834"], ["weight", "139.49595733599"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.282237"], ["updated_at", "2025-05-24 01:39:24.282237"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.3578051598708"], ["weight", "125.613238151682"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.283256"], ["updated_at", "2025-05-24 01:39:24.283256"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.685068445343"], ["weight", "132.282977854988"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.284369"], ["updated_at", "2025-05-24 01:39:24.284369"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "60.2888703924791"], ["weight", "130.440809040632"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.285378"], ["updated_at", "2025-05-24 01:39:24.285378"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.4072897919724"], ["weight", "128.848389435403"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.286412"], ["updated_at", "2025-05-24 01:39:24.286412"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "60.6316001185165"], ["weight", "109.719696252994"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.287436"], ["updated_at", "2025-05-24 01:39:24.287436"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "67.3735965886919"], ["weight", "146.023295039745"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.288456"], ["updated_at", "2025-05-24 01:39:24.288456"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.8727415972973"], ["weight", "158.855194208793"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.289568"], ["updated_at", "2025-05-24 01:39:24.289568"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "60.0471472234037"], ["weight", "114.603525896347"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.290855"], ["updated_at", "2025-05-24 01:39:24.290855"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "64.1544722687217"], ["weight", "133.138355593842"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.291878"], ["updated_at", "2025-05-24 01:39:24.291878"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "63.4616648933184"], ["weight", "128.950960852672"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.292887"], ["updated_at", "2025-05-24 01:39:24.292887"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (1.2ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "67.2438679477325"], ["weight", "154.061574837338"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.293940"], ["updated_at", "2025-05-24 01:39:24.293940"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.9ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.2135945099311"], ["weight", "139.001133618245"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.295898"], ["updated_at", "2025-05-24 01:39:24.295898"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "64.6928213839027"], ["weight", "138.680813564999"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.297461"], ["updated_at", "2025-05-24 01:39:24.297461"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (1.3ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "66.1992832819946"], ["weight", "180.69831709888"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.298540"], ["updated_at", "2025-05-24 01:39:24.298540"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "is_dog_person", "metric_1", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["height", "65.853375824511"], ["weight", "149.11852839278"], ["is_dog_person", 0], ["metric_1", "0.0"], ["created_at", "2025-05-24 01:39:24.300623"], ["updated_at", "2025-05-24 01:39:24.300623"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPrediction Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "predictions"[0m
+Started GET "/" for ::1 at 2025-05-23 22:39:36 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PredictionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/new.html.erb within layouts/application
+  Rendered predictions/new.html.erb within layouts/application (Duration: 3.5ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 2627.8ms | GC: 245.4ms)
+Completed 200 OK in 2686ms (Views: 2631.5ms | ActiveRecord: 18.2ms (0 queries, 0 cached) | GC: 247.8ms)
+
+
+Started POST "/predictions" for ::1 at 2025-05-23 22:40:35 -0300
+Processing by PredictionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"M8O0dIKEmjc6R3WxSXw9B4cnJsY-Hpa67cWky3tGBJVfPQ-LQoWHCV1uhwm1gSFqEjwul-OpC6bgSGL4RiEI_g", "@prediction"=>{"height"=>"69", "weight"=>"200"}, "commit"=>"Submit"}
+Entering Predict Function with Height:  and weight: 
+Exiting Predict Function with Prediction: 1.0
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (2.4ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "prediction", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["height", "69.0"], ["weight", "200.0"], ["prediction", 1], ["created_at", "2025-05-24 01:40:35.115490"], ["updated_at", "2025-05-24 01:40:35.115490"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/predictions/100
+Completed 302 Found in 26ms (ActiveRecord: 3.9ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/predictions/100" for ::1 at 2025-05-23 22:40:35 -0300
+Processing by PredictionsController#show as HTML
+  Parameters: {"id"=>"100"}
+  [1m[36mPrediction Load (0.7ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/show.html.erb within layouts/application
+  Rendered predictions/show.html.erb within layouts/application (Duration: 2.1ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 34.5ms | GC: 0.9ms)
+Completed 200 OK in 48ms (Views: 35.1ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started PUT "/predictions/100" for ::1 at 2025-05-23 22:40:38 -0300
+Processing by PredictionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VGiUmNvkq_0Go4aKN3lZPSLtTnOp2z3YfzVia7pAjV04li9nG-W2w2GKdDLLhEVQt_ZGInRsoMRyuKRYhyeBNg", "is_dog_person"=>"0", "id"=>"100"}
+Entering is_right_prediction Function with id: 100 and is_dog_person: 0
+  [1m[36mPrediction Load (0.6ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  [1m[36mPrediction Update (2.8ms)[0m  [1m[33mUPDATE "predictions" SET "is_dog_person" = $1 WHERE "predictions"."id" = $2[0m  [["is_dog_person", 0], ["id", 100]]
+Exiting is_right_prediction Function with result: false
+  [1m[36mPrediction Load (0.3ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/learning.html.erb within layouts/application
+  Rendered predictions/learning.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | GC: 0.3ms)
+Completed 200 OK in 54ms (Views: 12.0ms | ActiveRecord: 3.7ms (3 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/predictions/100" for ::1 at 2025-05-23 22:40:44 -0300
+Processing by PredictionsController#show as HTML
+  Parameters: {"id"=>"100"}
+  [1m[36mPrediction Load (0.9ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/show.html.erb within layouts/application
+  Rendered predictions/show.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.6ms | GC: 0.4ms)
+Completed 200 OK in 34ms (Views: 30.2ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started PUT "/predictions/100" for ::1 at 2025-05-23 22:40:51 -0300
+Processing by PredictionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gOVFH-cQ3DJZyaveuH7Pw-mA3lGVNCiXnOwSikHZCkLsG_7gJxHBDD7gWWZEg9OufJvWAEiDtYuRYdS5fL4GKQ", "is_dog_person"=>"0", "id"=>"100"}
+Entering is_right_prediction Function with id: 100 and is_dog_person: 0
+  [1m[36mPrediction Load (0.3ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  [1m[36mPrediction Update (0.8ms)[0m  [1m[33mUPDATE "predictions" SET "is_dog_person" = $1 WHERE "predictions"."id" = $2[0m  [["is_dog_person", 0], ["id", 100]]
+Exiting is_right_prediction Function with result: false
+  [1m[36mPrediction Load (0.4ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/learning.html.erb within layouts/application
+  Rendered predictions/learning.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.5ms | GC: 0.4ms)
+Completed 200 OK in 29ms (Views: 24.0ms | ActiveRecord: 1.5ms (3 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/predictions/new" for ::1 at 2025-05-23 22:40:55 -0300
+Processing by PredictionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/new.html.erb within layouts/application
+  Rendered predictions/new.html.erb within layouts/application (Duration: 1.8ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 24.1ms | GC: 0.5ms)
+Completed 200 OK in 25ms (Views: 24.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Entering TrainModeJob.perform function with id: 100,
+         height: 69.0, weight: 200.0, is_dog_person: 0
+Entering TrainModeJob.update_training_data function with
+          Height: 69.0, weight: 200.0, is_dog_person: 0
+Exiting TrainModeJob.update_training_data function
+Entering TrainModeJob.calculate_accuracy function
+Exiting TrainModeJob.calculate_accuracy function
+          Accuracy_type = :LINEAR, nfold = 10 : 94.44
+Entering TrainModeJob.save_accuracy function id: 100, accuracy: 94.44444444444444
+  [1m[36mPrediction Load (0.7ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  [1m[36mPrediction Update (0.9ms)[0m  [1m[33mUPDATE "predictions" SET "metric_1" = $1 WHERE "predictions"."id" = $2[0m  [["metric_1", "94.44444444444444"], ["id", 100]]
+Exiting TrainModeJob.save_accuracy
+Exiting TrainModeJob.perform function with model accuracy: 94.44444444444444
+Entering TrainModeJob.perform function with id: 100,
+         height: 69.0, weight: 200.0, is_dog_person: 0
+Entering TrainModeJob.update_training_data function with
+          Height: 69.0, weight: 200.0, is_dog_person: 0
+Exiting TrainModeJob.update_training_data function
+Entering TrainModeJob.calculate_accuracy function
+Exiting TrainModeJob.calculate_accuracy function
+          Accuracy_type = :LINEAR, nfold = 10 : 92.66
+Entering TrainModeJob.save_accuracy function id: 100, accuracy: 92.66055045871559
+  [1m[36mPrediction Load (1.2ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  [1m[36mPrediction Update (1.0ms)[0m  [1m[33mUPDATE "predictions" SET "metric_1" = $1 WHERE "predictions"."id" = $2[0m  [["metric_1", "92.66055045871559"], ["id", 100]]
+Exiting TrainModeJob.save_accuracy
+Exiting TrainModeJob.perform function with model accuracy: 92.66055045871559
+Started POST "/predictions" for ::1 at 2025-05-23 22:41:38 -0300
+Processing by PredictionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PmnI21lGE4W013cHtpwg6fblGV-gEdRvV4d-8I7Wmg1Sl3MkmUcOu9P-hb9KYTyEY_4RDn2mSXNaCrjDs7GWZg", "@prediction"=>{"height"=>"70", "weight"=>"165"}, "commit"=>"Submit"}
+Entering Predict Function with Height:  and weight: 
+Exiting Predict Function with Prediction: 0.0
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (0.9ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "prediction", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["height", "70.0"], ["weight", "165.0"], ["prediction", 0], ["created_at", "2025-05-24 01:41:38.130069"], ["updated_at", "2025-05-24 01:41:38.130069"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/predictions/101
+Completed 302 Found in 5ms (ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/predictions/101" for ::1 at 2025-05-23 22:41:38 -0300
+Processing by PredictionsController#show as HTML
+  Parameters: {"id"=>"101"}
+  [1m[36mPrediction Load (0.3ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/show.html.erb within layouts/application
+  Rendered predictions/show.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.1ms | GC: 0.5ms)
+Completed 200 OK in 22ms (Views: 20.5ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started PUT "/predictions/101" for ::1 at 2025-05-23 22:41:49 -0300
+Processing by PredictionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mPKHAvUFtSDt_NUhV4WQbi6DEE0iih9_1YKGcnqT9EP0DDz9NQSoHorVJ5mreIwDu5gYHP89gmPYD0BBR_T4KA", "is_dog_person"=>"0", "id"=>"101"}
+Entering is_right_prediction Function with id: 101 and is_dog_person: 0
+  [1m[36mPrediction Load (0.5ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  [1m[36mPrediction Update (2.0ms)[0m  [1m[33mUPDATE "predictions" SET "is_dog_person" = $1 WHERE "predictions"."id" = $2[0m  [["is_dog_person", 0], ["id", 101]]
+Exiting is_right_prediction Function with result: true
+No template found for PredictionsController#update, rendering head :no_content
+Completed 204 No Content in 10ms (ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Entering TrainModeJob.perform function with id: 101,
+         height: 70.0, weight: 165.0, is_dog_person: 0
+Entering TrainModeJob.update_training_data function with
+          Height: 70.0, weight: 165.0, is_dog_person: 0
+Exiting TrainModeJob.update_training_data function
+Entering TrainModeJob.calculate_accuracy function
+Exiting TrainModeJob.calculate_accuracy function
+          Accuracy_type = :LINEAR, nfold = 10 : 93.64
+Entering TrainModeJob.save_accuracy function id: 101, accuracy: 93.63636363636364
+  [1m[36mPrediction Load (1.5ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  [1m[36mPrediction Update (2.0ms)[0m  [1m[33mUPDATE "predictions" SET "metric_1" = $1 WHERE "predictions"."id" = $2[0m  [["metric_1", "93.63636363636364"], ["id", 101]]
+Exiting TrainModeJob.save_accuracy
+Exiting TrainModeJob.perform function with model accuracy: 93.63636363636364
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2025-05-23 22:42:59 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
