@@ -1,9 +1,11 @@
-<p>
-  <strong>Result:</strong>
-  <%= @prediction.dm_label ? "Positive for Diabetes/Pre-DM" : "Negative" %>
-</p>
-<% if @prediction.dm_label %>
-  <%= image_tag 'diabetes_positive.png' %>
-<% else %>
-  <%= image_tag 'diabetes_negative.png' %>
-<% end %>
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-semibold">Result:</h1>
+  <p class="mt-2 <%= @prediction.dm_label ? 'text-red-600' : 'text-green-600' %>">
+    <%= @prediction.dm_label ? "Positive for Diabetes/Pre-DM" : "Negative" %>
+  </p>
+
+  <%# If editing is allowed, re-render the form partial %>
+  <div class="mt-6">
+    <%= render "form", prediction: @prediction %>
+  </div>
+</div>

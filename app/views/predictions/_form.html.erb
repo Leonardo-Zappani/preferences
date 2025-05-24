@@ -1,21 +1,49 @@
-<%= form_with model: @prediction do |f| %>
+<%= form_with model: prediction, local: true, html: { class: "space-y-4" } do |f| %>
+  <% if prediction.errors.any? %>
+    <div class="bg-red-100 border border-red-300 text-red-800 px-4 py-2 rounded">
+      <strong><%= pluralize(prediction.errors.count, "error") %> prohibited this submission:</strong>
+      <ul class="mt-2 list-disc list-inside">
+        <% prediction.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div>
-    <%= f.label :gender %><br/>
-    <%= f.select :gender, [['Male','male'], ['Female','female']], prompt: 'Select gender' %>
+    <%= f.label :gender, class: "block mb-1" %>
+    <%= f.select :gender,
+                 [["Male","male"],["Female","female"]],
+                 { prompt: "Select gender" },
+                 class: "w-full px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition" %>
   </div>
+
   <div>
-    <%= f.label :age %><br/>
-    <%= f.number_field :age %>
+    <%= f.label :age, class: "block mb-1" %>
+    <%= f.number_field :age,
+                       class: "w-full px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
+                       placeholder: "Age (years)",
+                       min: 0 %>
   </div>
+
   <div>
-    <%= f.label :weight %><br/>
-    <%= f.number_field :weight, step: 0.1 %>
+    <%= f.label :height, class: "block mb-1" %>
+    <%= f.number_field :height,
+                       class: "w-full px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
+                       placeholder: "Height (cm)",
+                       step: "any" %>
   </div>
+
   <div>
-    <%= f.label :height %><br/>
-    <%= f.number_field :height, step: 0.1 %>
+    <%= f.label :weight, class: "block mb-1" %>
+    <%= f.number_field :weight,
+                       class: "w-full px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
+                       placeholder: "Weight (kg)",
+                       step: "any" %>
   </div>
+
   <div>
-    <%= f.submit "Check for Diabetes" %>
+    <%= f.submit "Check for Diabetes",
+                 class: "w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition" %>
   </div>
 <% end %>
