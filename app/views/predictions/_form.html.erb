@@ -11,39 +11,39 @@
   <% end %>
 
   <div>
-    <%= f.label :gender, class: "block mb-1" %>
+    <%= f.label :Generp, class: "block mb-1  text-white" %>
     <%= f.select :gender,
-                 [["Male","male"],["Female","female"]],
-                 { prompt: "Select gender" },
-                 class: "w-full px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition" %>
+                 [["Homem","male"],["Mulher","female"]],
+                 { prompt: "Selecione genero" },
+                 class: "w-full px-4 py-2 text-white rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition" %>
   </div>
 
   <div>
-    <%= f.label :age, class: "block mb-1" %>
+    <%= f.label :Idade, class: "block mb-1  text-white" %>
     <%= f.number_field :age,
-                       class: "w-full px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
-                       placeholder: "Age (years)",
+                       class: "w-full text-white px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
+                       placeholder: "Idade em anos",
                        min: 0 %>
   </div>
 
   <div>
-    <%= f.label :height, class: "block mb-1" %>
+    <%= f.label :Altura, class: "block mb-1  text-white" %>
     <%= f.number_field :height,
-                       class: "w-full px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
-                       placeholder: "Height (cm)",
+                       class: "w-full text-white px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
+                       placeholder: "Altura (cm)",
                        step: "any" %>
   </div>
 
   <div>
-    <%= f.label :weight, class: "block mb-1" %>
+    <%= f.label :Peso, class: "block mb-1  text-white" %>
     <%= f.number_field :weight,
-                       class: "w-full px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
-                       placeholder: "Weight (kg)",
+                       class: "w-full text-white px-4 py-2 rounded-lg shadow-inner focus:ring-2 focus:ring-indigo-500 transition",
+                       placeholder: "Peso (kg)",
                        step: "any" %>
   </div>
 
   <div>
-    <%= f.submit "Check for Diabetes",
-                 class: "w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition" %>
+    <%= f.submit "Testar para Diabetes",
+                 class: "w-full py-3  text-white bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition" %>
   </div>
 <% end %>
