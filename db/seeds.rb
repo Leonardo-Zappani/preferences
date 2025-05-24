@@ -12,7 +12,7 @@ CSV.foreach(csv_path, headers: true, col_sep: ';') do |row|
     gender:      row['Gender'].downcase,
     age:         row['Age'].to_i,
     # assuming your model has a boolean column :dm_or_predm
-    dm_label: row['DM_or_PreDM'].to_s.upcase == 'TRUE',
+    dm_label: row['DM_or_PreDM'].strip.upcase == 'TRUE' ?  1 : -1,
     weight:      row['Weight'].to_f,
     height:      row['Height'].to_f
   }
