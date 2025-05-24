@@ -64,3 +64,7 @@ end
 gem "chartkick"
 
 gem 'sucker_punch', '~> 2.0'
+
+gem "tailwindcss-ruby", "~> 4.1"
+
+gem "tailwindcss-rails", "~> 4.2"
