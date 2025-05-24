@@ -4,7 +4,7 @@ class PredictionsController < ApplicationController
   end
 
   def create
-    @prediction = Prediction.new(prediction_params)
+    @prediction = Prediction.find_or_initialize_by(prediction_params)
     @prediction.dm_label = Prediction.predict_dm!(
       gender: params[:prediction][:gender],
       age: params[:prediction][:age],
