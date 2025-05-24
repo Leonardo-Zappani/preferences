@@ -595,3 +595,63 @@ Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2025-
   
 ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
   
+Started GET "/predictions/new" for ::1 at 2025-05-23 22:43:27 -0300
+Processing by PredictionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/new.html.erb within layouts/application
+  Rendered predictions/new.html.erb within layouts/application (Duration: 1.7ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.2ms | GC: 1.9ms)
+Completed 200 OK in 23ms (Views: 20.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.9ms)
+
+
+Started POST "/predictions" for ::1 at 2025-05-23 22:44:07 -0300
+Processing by PredictionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"K4bMPv9znZ8wKuXwix-2RxKa0o_tvNHr-w0GujA3aPdHeHfBP3KAoVcDF0h34qoqh4Ha3jALTPf2gMCJDVBknA", "@prediction"=>{"height"=>"70", "weight"=>"165"}, "commit"=>"Submit"}
+Entering Predict Function with Height:  and weight: 
+Exiting Predict Function with Prediction: 1.0
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPrediction Create (2.5ms)[0m  [1m[32mINSERT INTO "predictions" ("height", "weight", "prediction", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["height", "70.0"], ["weight", "165.0"], ["prediction", 1], ["created_at", "2025-05-24 01:44:07.864469"], ["updated_at", "2025-05-24 01:44:07.864469"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/predictions/102
+Completed 302 Found in 9ms (ActiveRecord: 3.7ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/predictions/102" for ::1 at 2025-05-23 22:44:07 -0300
+Processing by PredictionsController#show as HTML
+  Parameters: {"id"=>"102"}
+  [1m[36mPrediction Load (0.5ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 102], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/show.html.erb within layouts/application
+  Rendered predictions/show.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.4ms | GC: 3.1ms)
+Completed 200 OK in 48ms (Views: 45.3ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 3.4ms)
+
+
+Started PUT "/predictions/102" for ::1 at 2025-05-23 22:44:19 -0300
+Processing by PredictionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZJ2Vni7Sw9C8NfVr4zFZwLtaEkUR0RKH9bUNOfBZUWMIYy5h7tPe7tscB9MfzEWtLkEaFMxmj5v4OMsKzT5dCA", "is_dog_person"=>"0", "id"=>"102"}
+Entering is_right_prediction Function with id: 102 and is_dog_person: 0
+  [1m[36mPrediction Load (0.5ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 102], ["LIMIT", 1]]
+  [1m[36mPrediction Update (0.9ms)[0m  [1m[33mUPDATE "predictions" SET "is_dog_person" = $1 WHERE "predictions"."id" = $2[0m  [["is_dog_person", 0], ["id", 102]]
+Exiting is_right_prediction Function with result: false
+  [1m[36mPrediction Load (0.4ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 102], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering predictions/learning.html.erb within layouts/application
+  Rendered predictions/learning.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.4ms | GC: 2.8ms)
+Completed 200 OK in 36ms (Views: 29.0ms | ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 3.1ms)
+
+
+Entering TrainModeJob.perform function with id: 102,
+         height: 70.0, weight: 165.0, is_dog_person: 0
+Entering TrainModeJob.update_training_data function with
+          Height: 70.0, weight: 165.0, is_dog_person: 0
+Exiting TrainModeJob.update_training_data function
+Entering TrainModeJob.calculate_accuracy function
+Exiting TrainModeJob.calculate_accuracy function
+          Accuracy_type = :LINEAR, nfold = 10 : 93.69
+Entering TrainModeJob.save_accuracy function id: 102, accuracy: 93.69369369369369
+  [1m[36mPrediction Load (2.4ms)[0m  [1m[34mSELECT "predictions".* FROM "predictions" WHERE "predictions"."id" = $1 LIMIT $2[0m  [["id", 102], ["LIMIT", 1]]
+  [1m[36mPrediction Update (9.6ms)[0m  [1m[33mUPDATE "predictions" SET "metric_1" = $1 WHERE "predictions"."id" = $2[0m  [["metric_1", "93.69369369369369"], ["id", 102]]
+Exiting TrainModeJob.save_accuracy
+Exiting TrainModeJob.perform function with model accuracy: 93.69369369369369
