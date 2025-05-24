@@ -3,10 +3,14 @@ require 'libsvm/node'
 require 'csv'
 
 class Prediction < ApplicationRecord
-  validates :height, presence: true,
-            numericality: {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 250  }
+  validates :gender, presence: true, inclusion: { in: %w[male female] }
+  validates :age,    presence: true,
+            numericality: { only_integer: true, greater_than: 0, less_than: 150 }
   validates :weight, presence: true,
-            numericality: { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 500  }
+            numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 500 }
+  validates :height, presence: true,
+            numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 250 }
+
 
   log = Logger.new(STDOUT)
   log.level = Logger::DEBUG
@@ -15,17 +19,16 @@ class Prediction < ApplicationRecord
   PATH_TO_TRAINED_MODEL = "/training_data/svm_trained_model.csv"
 
   # Predict classifier value based on input
-  def predict(height, weight)
-    #load trained model from disk
-    savedmodel = Libsvm::Model.load(File.join(Rails.root,PATH_TO_TRAINED_MODEL))
+  def predict(gender, age, weight, height)
+    m = Libsvm::Model.load(MODEL_PATH)
+    g = (gender.downcase == 'male' ? 1.0 : 0.0)
+    a = age.to_f
+    w = weight.to_f
+    h = height.to_f
 
-    # predict classifier result
-    prediction = savedmodel.predict(Libsvm::Node.features('male', '20', '92', '176'))
-
-    raise "Prediction: #{prediction.inspect}"
-    logger.debug("Exiting Predict Function with Prediction: #{prediction}")
-
-    return prediction
+    raw = m.predict(Libsvm::Node.features(g, a, w, h))
+    # convert back to boolean if you like
+    raw == 1 ? true : false
   end
 
   # Save the actual value of 'is_dog_person'.

@@ -1,21 +1,30 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#!/usr/bin/env rails runner
+
 require 'csv'
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'training_data.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  p = Prediction.new
-  p.height = row[0]
-  p.weight = row[1]
-  p.is_dog_person = row[2]
-  p.metric_1 = 0.0
-  p.save
-end
+# adjust to wherever you’ve put your CSV
+csv_path = Rails.root.join('training_data', 'training_data.csv')
 
-puts "There are now #{Prediction.count} rows in the prediction table"
+# open and iterate
+CSV.foreach(csv_path, headers: true, col_sep: ';') do |row|
+  # build a hash of attributes
+  attrs = {
+    gender:      row['Gender'].downcase,
+    age:         row['Age'].to_i,
+    # assuming your model has a boolean column :dm_or_predm
+    dm_label: row['DM_or_PreDM'].to_s.upcase == 'TRUE',
+    weight:      row['Weight'].to_f,
+    height:      row['Height'].to_f
+  }
+
+  # create (or use create! if you want it to blow up on validation errors)
+  record = Prediction.create(attrs)
+
+  if record.persisted?
+    puts "✓ Created Prediction ##{record.id}"
+  else
+    puts "✗ Failed on row #{row.to_h.inspect}: #{record.errors.full_messages.join(', ')}"
+  end
+rescue StandardError => e
+  puts "✗ Error processing row #{row.to_h.inspect}: #{e.message}"
+end
