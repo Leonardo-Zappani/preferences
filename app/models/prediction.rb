@@ -20,7 +20,8 @@ class Prediction < ApplicationRecord
 
   # Predict classifier value based on input
   def predict(gender, age, weight, height)
-    m = Libsvm::Model.load(MODEL_PATH)
+    time = Time.now
+    m = Libsvm::Model.load(File.join(Rails.root,PATH_TO_TRAINED_MODEL))
     g = (gender.downcase == 'male' ? 1.0 : 0.0)
     a = age.to_f
     w = weight.to_f
@@ -28,6 +29,8 @@ class Prediction < ApplicationRecord
 
     raw = m.predict(Libsvm::Node.features(g, a, w, h))
     # convert back to boolean if you like
+    p time - Time.now
+    p raw.inspect
     raw == 1 ? true : false
   end
 
