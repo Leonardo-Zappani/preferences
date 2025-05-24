@@ -2,53 +2,99 @@
 
 require 'csv'
 require 'libsvm'
+require 'logger'
+require 'thread'
 
-# 1) point at your CSV
-csv_path = Rails.root.join('training_data', 'training_data.csv')
+logger = Logger.new(STDOUT)
+logger.level = Logger::INFO
+
+csv_path   = Rails.root.join('training_data', 'training_data.csv')
+model_path = Rails.root.join('training_data', 'svm_trained_model.model')
+
+# 1) Load & strip BOM
+raw = File.read(csv_path)
+raw.sub!("\xEF\xBB\xBF", "")
+
+# 2) Parse into memory
+csv   = CSV.parse(raw, headers: true, col_sep: ';')
+total = csv.size
 
 features = []
 labels   = []
 
-# 2) read every row
-CSV.foreach(csv_path, headers: true, col_sep: ';') do |row|
-  # normalize inputs
-  gender_node = row['Gender'].to_s.strip.downcase == 'male' ? 1.0 : 0.0
-  age         = row['Age'].to_f
-  weight      = row['Weight'].to_f
-  height      = row['Height'].to_f
-
-  # build your Libsvm::Node array
-  nodes = Libsvm::Node.features(gender_node, age, weight, height)
+logger.info "Parsing #{total} rows…"
+csv.each_with_index do |row, idx|
+  gender_val = row['Gender'].to_s.strip.downcase == 'male' ? 1.0 : 0.0
+  nodes = Libsvm::Node.features(
+    gender_val,
+    row['Age'].to_f,
+    row['Weight'].to_f,
+    row['Height'].to_f
+  )
   features << nodes
+  labels   << (row['DM_or_PreDM'].to_s.strip.upcase == 'TRUE' ? 1 : 0)
 
-  # TRUE/FALSE → 1/0
-  labels << (row['DM_or_PreDM'].to_s.strip.upcase == 'TRUE' ? 1 : 0)
+  # log every 10% (or at end)
+  if (idx + 1) % (total / 10.0).ceil == 0 || idx + 1 == total
+    pct = ((idx + 1) / total.to_f * 100).round(1)
+    logger.info "Parsed #{idx+1}/#{total} (#{pct}%)"
+  end
 end
 
-# 3) set up the problem
+# 3) Train on full dataset
+logger.info "Training final model on all #{total} instances…"
 problem = Libsvm::Problem.new
 problem.set_examples(labels, features)
 
 param = Libsvm::SvmParameter.new.tap do |p|
-  p.cache_size  = 10       # MB
-  p.eps         = 0.00001
+  p.cache_size  = 10
+  p.eps         = 1e-5
   p.degree      = 5
   p.gamma       = 0.01
   p.c           = 100
   p.kernel_type = Libsvm::KernelType::LINEAR
 end
 
-# 4) train & save
 model = Libsvm::Model.train(problem, param)
-out   = Rails.root.join('training_data', 'svm_trained_model.model')
-model.save(out.to_s)
-puts "✅ Model saved to #{out}"
+model.save(model_path.to_s)
+logger.info "✓ Model saved to #{model_path}"
 
-# 5) optional: 10-fold cross-validation
-results   = Libsvm::Model.cross_validation(problem, param, 10)
-class_idxs = labels.uniq.sort
-predicted = results.map { |lab| class_idxs[lab] }
-correct   = predicted.zip(labels).count { |pred, actual| pred == actual }
-accuracy  = (correct.to_f / labels.size) * 100
+# 4) Parallel 10-fold CV
+nfold = 10
+logger.info "Starting #{nfold}-fold cross-validation in parallel…"
 
-puts "🔍 10-fold CV accuracy: #{'%.2f' % accuracy}%"
+# split indices into folds
+folds = (0...total).to_a.each_slice((total.to_f/nfold).ceil).to_a.take(nfold)
+mutex          = Mutex.new
+completed      = 0
+correct_counts = []
+
+threads = folds.each_with_index.map do |test_idxs, fold|
+  Thread.new do
+    logger.info "▶️  Fold #{fold+1}: training on #{total - test_idxs.size} instances…"
+    train_idxs = (0...total).to_a - test_idxs
+
+    # build train problem
+    tr_problem  = Libsvm::Problem.new
+    tr_labels   = train_idxs.map { |i| labels[i] }
+    tr_features = train_idxs.map { |i| features[i] }
+    tr_problem.set_examples(tr_labels, tr_features)
+
+    # train & test this fold
+    fold_model = Libsvm::Model.train(tr_problem, param)
+    correct    = test_idxs.count { |i| fold_model.predict(features[i]) == labels[i] }
+
+    mutex.synchronize do
+      correct_counts << correct
+      completed += 1
+      pct = (completed / nfold.to_f * 100).round(1)
+      logger.info "✅ Fold #{fold+1} done (#{completed}/#{nfold}, #{pct}%)"
+    end
+  end
+end
+
+# wait & report
+threads.each(&:join)
+total_correct = correct_counts.sum
+accuracy      = (total_correct.to_f / total) * 100
+logger.info "🏁 #{nfold}-fold CV accuracy: #{'%.2f' % accuracy}%"
