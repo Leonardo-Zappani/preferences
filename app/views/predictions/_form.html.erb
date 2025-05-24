@@ -1,0 +1,21 @@
+<%= form_with model: @prediction do |f| %>
+  <div>
+    <%= f.label :gender %><br/>
+    <%= f.select :gender, [['Male','male'], ['Female','female']], prompt: 'Select gender' %>
+  </div>
+  <div>
+    <%= f.label :age %><br/>
+    <%= f.number_field :age %>
+  </div>
+  <div>
+    <%= f.label :weight %><br/>
+    <%= f.number_field :weight, step: 0.1 %>
+  </div>
+  <div>
+    <%= f.label :height %><br/>
+    <%= f.number_field :height, step: 0.1 %>
+  </div>
+  <div>
+    <%= f.submit "Check for Diabetes" %>
+  </div>
+<% end %>
