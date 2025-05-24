@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'rubocop'
 gem 'rubocop-rails'
+gem 'liblinear-ruby'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
