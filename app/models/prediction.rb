@@ -55,7 +55,7 @@ class Prediction < ApplicationRecord
     # Make prediction
     raw_label = model.predict(x_selected)
     prediction_proba = model.predict_proba(x_selected)[0, 1] # Get probability of positive class
-    dm_flag = (raw_label[0] == 1)
+    dm_flag = prediction_proba >= 0.9 # Using a 90% threshold for positive predictions
 
     # Get model details from the latest performance record
     latest_performance = ModelPerformance.latest.first

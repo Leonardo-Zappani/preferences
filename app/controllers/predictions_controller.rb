@@ -12,6 +12,11 @@ class PredictionsController < ApplicationController
       height: params[:prediction][:height]
     )
 
+    # Set default values for required fields if not present
+    @prediction.model_type ||= 'DefaultType'
+    @prediction.model_version ||= 'v1.0'
+    @prediction.prediction_date ||= Time.current
+
     if @prediction.save
       render :show
     else
