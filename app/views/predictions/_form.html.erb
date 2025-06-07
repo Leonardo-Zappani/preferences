@@ -13,11 +13,12 @@
   <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
     <div class="space-y-6">
       <div>
-        <%= f.label :Generp, class: "block mb-2 text-sm font-medium text-gray-200" %>
+        <%= f.label :Genero, class: "block mb-2 text-sm font-medium text-gray-200" %>
         <%= f.select :gender,
                     [["Homem","male"],["Mulher","female"]],
                     { prompt: "Selecione genero" },
-                    class: "w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" %>
+                    class: "w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200",
+                    required: true %>
       </div>
 
       <div>
@@ -50,4 +51,41 @@
       </div>
     </div>
   </div>
+
+  <% if prediction.persisted? %>
+    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+      <h3 class="text-xl font-semibold text-white mb-4">Resultados da Análise</h3>
+      
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-gray-300">Resultado:</span>
+          <span class="<%= prediction.dm_label? ? 'text-red-400' : 'text-green-400' %> font-semibold">
+            <%= prediction.dm_label? ? 'Positivo para Diabetes' : 'Negativo para Diabetes' %>
+          </span>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="text-gray-300">Nível de Risco:</span>
+          <span class="<%= prediction.risk_level == 'Alto' ? 'text-red-400' : prediction.risk_level == 'Médio' ? 'text-yellow-400' : 'text-green-400' %> font-semibold">
+            <%= prediction.risk_level %>
+          </span>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="text-gray-300">Probabilidade:</span>
+          <span class="font-semibold text-white"><%= prediction.formatted_probability %></span>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="text-gray-300">Modelo Utilizado:</span>
+          <span class="text-gray-200"><%= prediction.model_type %> (v<%= prediction.model_version %>)</span>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="text-gray-300">Data da Análise:</span>
+          <span class="text-gray-200"><%= prediction.prediction_date.strftime("%d/%m/%Y %H:%M") %></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>

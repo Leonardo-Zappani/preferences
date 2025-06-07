@@ -57,6 +57,7 @@
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.3.5, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="connection_pool (v2.5.3, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="csv (v3.3.5, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.4.1, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="drb (v2.2.3, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erb (v4.0.4, RVM: ruby-3.1.4) [gem]" level="application" />
@@ -71,6 +72,7 @@
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.6.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v2.12.2, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="language_server-protocol (v3.17.0.5, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="lbfgsb (v0.6.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="liblinear-ruby (v1.0.3, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="lint_roller (v1.1.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="listen (v3.9.0, RVM: ruby-3.1.4) [gem]" level="application" />
@@ -80,12 +82,14 @@
     <orderEntry type="library" scope="PROVIDED" name="marcel (v1.0.4, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.1.5, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.25.5, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mmh3 (v1.2.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-imap (v0.5.8, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-pop (v0.1.2, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-protocol (v0.2.2, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-smtp (v0.5.1, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.7.4, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.18.8, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="numo-narray (v0.9.2.1, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.27.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v3.3.8.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v1.5.9, RVM: ruby-3.1.4) [gem]" level="application" />
@@ -117,6 +121,25 @@
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.44.1, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-rails (v2.32.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.13.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-clustering (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-core (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-decomposition (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-ensemble (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-evaluation_measure (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-feature_extraction (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-kernel_approximation (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-kernel_machine (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-linear_model (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-manifold (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-metric_learning (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-model_selection (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-naive_bayes (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-nearest_neighbors (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-neural_network (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-pipeline (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-preprocessing (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rumale-tree (v1.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.4, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-listen (v4.0.0, RVM: ruby-3.1.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v5.1.0, RVM: ruby-3.1.4) [gem]" level="application" />
@@ -220,6 +243,105 @@
         <option value="test_unit:plugin" />
       </list>
     </option>
+  </component>
+  <component name="RailsPaths" isManagedAutomatically="true">
+    <entry key="app">
+      <value>file://$MODULE_DIR$/app</value>
+    </entry>
+    <entry key="app/assets">
+      <value>file://$MODULE_DIR$/app/assets</value>
+    </entry>
+    <entry key="app/channels">
+      <value>file://$MODULE_DIR$/app/channels</value>
+    </entry>
+    <entry key="app/controllers">
+      <value>file://$MODULE_DIR$/app/controllers</value>
+    </entry>
+    <entry key="app/helpers">
+      <value>file://$MODULE_DIR$/app/helpers</value>
+    </entry>
+    <entry key="app/mailers">
+      <value>file://$MODULE_DIR$/app/mailers</value>
+    </entry>
+    <entry key="app/models">
+      <value>file://$MODULE_DIR$/app/models</value>
+    </entry>
+    <entry key="app/views">
+      <value>file://$MODULE_DIR$/app/views</value>
+    </entry>
+    <entry key="config">
+      <value>file://$MODULE_DIR$/config</value>
+    </entry>
+    <entry key="config/cable">
+      <value>file://$MODULE_DIR$/config/cable.yml</value>
+    </entry>
+    <entry key="config/database">
+      <value>file://$MODULE_DIR$/config/database.yml</value>
+    </entry>
+    <entry key="config/environment">
+      <value>file://$MODULE_DIR$/config/environment.rb</value>
+    </entry>
+    <entry key="config/environments">
+      <value>file://$MODULE_DIR$/config/environments</value>
+    </entry>
+    <entry key="config/initializers">
+      <value>file://$MODULE_DIR$/config/initializers</value>
+    </entry>
+    <entry key="config/locales">
+      <value>file://$MODULE_DIR$/config/locales</value>
+    </entry>
+    <entry key="config/routes">
+      <value>file://$MODULE_DIR$/config/routes</value>
+    </entry>
+    <entry key="config/routes.rb">
+      <value>file://$MODULE_DIR$/config/routes.rb</value>
+    </entry>
+    <entry key="db">
+      <value>file://$MODULE_DIR$/db</value>
+    </entry>
+    <entry key="db/migrate">
+      <value>file://$MODULE_DIR$/db/migrate</value>
+    </entry>
+    <entry key="db/seeds.rb">
+      <value>file://$MODULE_DIR$/db/seeds.rb</value>
+    </entry>
+    <entry key="lib">
+      <value>file://$MODULE_DIR$/lib</value>
+    </entry>
+    <entry key="lib/assets">
+      <value>file://$MODULE_DIR$/lib/assets</value>
+    </entry>
+    <entry key="lib/tasks">
+      <value>file://$MODULE_DIR$/lib/tasks</value>
+    </entry>
+    <entry key="lib/templates">
+      <value>file://$MODULE_DIR$/lib/templates</value>
+    </entry>
+    <entry key="log">
+      <value>file://$MODULE_DIR$/log/development.log</value>
+    </entry>
+    <entry key="public">
+      <value>file://$MODULE_DIR$/public</value>
+    </entry>
+    <entry key="public/javascripts">
+      <value>file://$MODULE_DIR$/public/javascripts</value>
+    </entry>
+    <entry key="public/stylesheets">
+      <value>file://$MODULE_DIR$/public/stylesheets</value>
+    </entry>
+    <entry key="test/mailers/previews">
+      <value>file://$MODULE_DIR$/test/mailers/previews</value>
+      <value>file://$MODULE_DIR$/test/mailers/previews</value>
+    </entry>
+    <entry key="tmp">
+      <value>file://$MODULE_DIR$/tmp</value>
+    </entry>
+    <entry key="vendor">
+      <value>file://$MODULE_DIR$/vendor</value>
+    </entry>
+    <entry key="vendor/assets">
+      <value>file://$MODULE_DIR$/vendor/assets</value>
+    </entry>
   </component>
   <component name="RakeTasksCache">
     <option name="myRootTask">
