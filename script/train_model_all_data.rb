@@ -56,13 +56,44 @@ logger.info "⏱ Training took #{train_time.real.round(3)}s"
 @model.save(model_path.to_s)
 logger.info "✓ Model saved to #{model_path}"
 
-# 5) k-fold cross-validation via LIBLINEAR’s built-in
+# 5) k-fold cross-validation via LIBLINEAR's built-in
 nfold = 10
 logger.info "Starting #{nfold}-fold cross-validation…"
 cv_time = Benchmark.measure do
   results = Liblinear.cross_validation(nfold, opts, labels, examples)
+  
+  # Calculate metrics
   correct = results.each_with_index.count { |pred, i| pred == labels[i] }
-  accuracy = (correct.to_f / total) * 100
-  logger.info "🏁 #{nfold}-fold CV accuracy: #{'%.2f' % accuracy}%"
+  accuracy = correct.to_f / total
+  
+  # Calculate precision, recall, and F1 score
+  true_positives = results.each_with_index.count { |pred, i| pred == 1 && labels[i] == 1 }
+  false_positives = results.each_with_index.count { |pred, i| pred == 1 && labels[i] == 0 }
+  false_negatives = results.each_with_index.count { |pred, i| pred == 0 && labels[i] == 1 }
+  
+  precision = true_positives.to_f / (true_positives + false_positives)
+  recall = true_positives.to_f / (true_positives + false_negatives)
+  f1_score = 2 * (precision * recall) / (precision + recall)
+  
+  # Log metrics
+  logger.info "🏁 #{nfold}-fold CV metrics:"
+  logger.info "   Accuracy:  #{'%.2f' % (accuracy * 100)}%"
+  logger.info "   Precision: #{'%.2f' % (precision * 100)}%"
+  logger.info "   Recall:    #{'%.2f' % (recall * 100)}%"
+  logger.info "   F1 Score:  #{'%.2f' % (f1_score * 100)}%"
+  
+  # Save performance metrics
+  model_version = File.read(Rails.root.join('training_data', 'model_version.txt')).strip rescue '1.0'
+  ModelPerformance.create!(
+    accuracy: accuracy,
+    precision: precision,
+    recall: recall,
+    f1_score: f1_score,
+    total_predictions: total,
+    correct_predictions: correct,
+    model_version: model_version,
+    training_date: Time.current
+  )
+  logger.info "✓ Performance metrics saved to database"
 end
 logger.info "⏱ CV took #{cv_time.real.round(3)}s"

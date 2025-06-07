@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accuracy: 1.5
+  precision: 1.5
+  recall: 1.5
+  f1_score: 1.5
+  total_predictions: 1
+  correct_predictions: 1
+  model_version: MyString
+  training_date: 2025-06-07 16:07:25
+
+two:
+  accuracy: 1.5
+  precision: 1.5
+  recall: 1.5
+  f1_score: 1.5
+  total_predictions: 1
+  correct_predictions: 1
+  model_version: MyString
+  training_date: 2025-06-07 16:07:25

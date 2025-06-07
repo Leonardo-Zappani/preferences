@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_24_022334) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_07_190725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "model_performances", force: :cascade do |t|
+    t.float "accuracy"
+    t.float "precision"
+    t.float "recall"
+    t.float "f1_score"
+    t.integer "total_predictions"
+    t.integer "correct_predictions"
+    t.string "model_version"
+    t.datetime "training_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "predictions", force: :cascade do |t|
     t.decimal "height"
