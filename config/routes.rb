@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :predictions
+  root "predictions#new"
+  resources :predictions, only: [:new, :create]
+  get 'dashboard', to: 'dashboard#index'
 
   namespace :admin do
     resources :predictions
   end
-
-  root 'predictions#new'
 
 end

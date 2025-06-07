@@ -1,0 +1,182 @@
+<div class="space-y-8">
+  <!-- Header -->
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-white">Model Performance Dashboard</h1>
+    <div class="text-sm text-gray-400">
+      Last updated: <%= @latest_performance&.training_date&.strftime("%B %d, %Y") || "No data" %>
+    </div>
+  </div>
+
+  <!-- Key Metrics -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-gray-800/50 backdrop-blur-lg rounded-xl p-6 border border-gray-700/50">
+      <div class="text-gray-400 text-sm mb-2">Total Predictions</div>
+      <div class="text-3xl font-bold text-white"><%= number_with_delimiter(@total_predictions) %></div>
+      <div class="text-sm text-gray-400 mt-2">Correct: <%= number_with_delimiter(@total_correct) %></div>
+    </div>
+
+    <div class="bg-gray-800/50 backdrop-blur-lg rounded-xl p-6 border border-gray-700/50">
+      <div class="text-gray-400 text-sm mb-2">Average Accuracy</div>
+      <div class="text-3xl font-bold text-white"><%= number_to_percentage(@average_accuracy * 100, precision: 2) %></div>
+      <div class="text-sm text-gray-400 mt-2">Last 30 days</div>
+    </div>
+
+    <div class="bg-gray-800/50 backdrop-blur-lg rounded-xl p-6 border border-gray-700/50">
+      <div class="text-gray-400 text-sm mb-2">Latest F1 Score</div>
+      <div class="text-3xl font-bold text-white"><%= number_to_percentage(@latest_performance&.f1_score.to_f * 100, precision: 2) %></div>
+      <div class="text-sm text-gray-400 mt-2">Model v<%= @latest_performance&.model_version %></div>
+    </div>
+
+    <div class="bg-gray-800/50 backdrop-blur-lg rounded-xl p-6 border border-gray-700/50">
+      <div class="text-gray-400 text-sm mb-2">Active Models</div>
+      <div class="text-3xl font-bold text-white"><%= @model_versions.size %></div>
+      <div class="text-sm text-gray-400 mt-2">Versions deployed</div>
+    </div>
+  </div>
+
+  <!-- Performance Charts -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Accuracy Over Time -->
+    <div class="bg-gray-800/50 backdrop-blur-lg rounded-xl p-6 border border-gray-700/50">
+      <h3 class="text-lg font-semibold text-white mb-4">Accuracy Over Time</h3>
+      <canvas id="accuracyChart" height="300"></canvas>
+    </div>
+
+    <!-- Metrics Comparison -->
+    <div class="bg-gray-800/50 backdrop-blur-lg rounded-xl p-6 border border-gray-700/50">
+      <h3 class="text-lg font-semibold text-white mb-4">Metrics Comparison</h3>
+      <canvas id="metricsChart" height="300"></canvas>
+    </div>
+  </div>
+
+  <!-- Recent Performance Table -->
+  <div class="bg-gray-800/50 backdrop-blur-lg rounded-xl border border-gray-700/50 overflow-hidden">
+    <div class="p-6">
+      <h3 class="text-lg font-semibold text-white mb-4">Recent Performance</h3>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-700">
+          <thead>
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Version</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Accuracy</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Precision</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Recall</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">F1 Score</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Predictions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-700">
+            <% @recent_performances.each do |performance| %>
+              <tr class="hover:bg-gray-700/50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"><%= performance.training_date.strftime("%Y-%m-%d") %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">v<%= performance.model_version %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"><%= number_to_percentage(performance.accuracy * 100, precision: 2) %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"><%= number_to_percentage(performance.precision * 100, precision: 2) %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"><%= number_to_percentage(performance.recall * 100, precision: 2) %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"><%= number_to_percentage(performance.f1_score * 100, precision: 2) %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"><%= number_with_delimiter(performance.total_predictions) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Accuracy Over Time Chart
+  const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
+  new Chart(accuracyCtx, {
+    type: 'line',
+    data: {
+      labels: <%= raw @metrics[:dates] %>,
+      datasets: [{
+        label: 'Accuracy',
+        data: <%= raw @metrics[:accuracy] %>,
+        borderColor: 'rgb(59, 130, 246)',
+        tension: 0.4,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: 'rgb(156, 163, 175)'
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 1,
+          ticks: {
+            color: 'rgb(156, 163, 175)',
+            callback: function(value) {
+              return (value * 100).toFixed(0) + '%';
+            }
+          }
+        },
+        x: {
+          ticks: {
+            color: 'rgb(156, 163, 175)'
+          }
+        }
+      }
+    }
+  });
+
+  // Metrics Comparison Chart
+  const metricsCtx = document.getElementById('metricsChart').getContext('2d');
+  new Chart(metricsCtx, {
+    type: 'radar',
+    data: {
+      labels: ['Accuracy', 'Precision', 'Recall', 'F1 Score'],
+      datasets: [{
+        label: 'Latest Performance',
+        data: [
+          <%= @latest_performance&.accuracy || 0 %>,
+          <%= @latest_performance&.precision || 0 %>,
+          <%= @latest_performance&.recall || 0 %>,
+          <%= @latest_performance&.f1_score || 0 %>
+        ],
+        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+        borderColor: 'rgb(59, 130, 246)',
+        pointBackgroundColor: 'rgb(59, 130, 246)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(59, 130, 246)'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: 'rgb(156, 163, 175)'
+          }
+        }
+      },
+      scales: {
+        r: {
+          beginAtZero: true,
+          max: 1,
+          ticks: {
+            color: 'rgb(156, 163, 175)',
+            callback: function(value) {
+              return (value * 100).toFixed(0) + '%';
+            }
+          },
+          pointLabels: {
+            color: 'rgb(156, 163, 175)'
+          }
+        }
+      }
+    }
+  });
+});
+</script>
