@@ -3,6 +3,10 @@ class PredictionsController < ApplicationController
     @prediction = Prediction.new
   end
 
+  def index
+    @predictions = Prediction.all
+  end
+
   def create
     @prediction = Prediction.find_or_initialize_by(prediction_params)
     @prediction.dm_label = Prediction.predict_dm!(

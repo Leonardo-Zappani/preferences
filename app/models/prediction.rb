@@ -24,46 +24,41 @@ class Prediction < ApplicationRecord
     model_data = Marshal.load(File.read(MODEL_PATH))
     model = model_data[:model]
     scaler = model_data[:scaler]
+    encoder = model_data[:encoder]
     selected_idx = model_data[:selected_idx]
-    cat_values = model_data[:cat_values]
     feature_names = model_data[:feature_names]
 
     # Prepare features in the same order as training
     features = feature_names.map do |f|
       case f
       when 'Gender'
-        val = attrs[:gender].to_s.strip.downcase
-        cat_values['Gender'].index(val) || 0
-      when 'Age'
-        attrs[:age].to_f
-      when 'Weight'
-        attrs[:weight].to_f
-      when 'Height'
-        attrs[:height].to_f
+        # One-hot encode gender
+        attrs[:gender].to_s.strip.downcase == 'male' ? 1.0 : 0.0
+      when 'Age', 'Weight', 'Height'
+        attrs[f.downcase.to_sym].to_f
       else
         0.0 # Default for any other features
       end
     end
 
-    # Convert to Numo array and scale
+    # Convert to Numo array
     x = Numo::DFloat.cast([features])
-    x_scaled = scaler.transform(x)
     
-    # Select features
+    # Apply preprocessing steps in the same order as training
+    x_encoded = encoder.transform(x)
+    x_scaled = scaler.transform(x_encoded)
     x_selected = x_scaled[true, selected_idx]
 
     # Make prediction
-    raw_label = model.predict(x_selected)
     prediction_proba = model.predict_proba(x_selected)[0, 1] # Get probability of positive class
-    dm_flag = prediction_proba >= 0.9 # Using a 90% threshold for positive predictions
-
+    
     # Get model details from the latest performance record
     latest_performance = ModelPerformance.latest.first
 
     # Persist the prediction with additional details
     create!(
       attrs.merge(
-        dm_label: dm_flag,
+        dm_label: prediction_proba >= 0.5, # Use 0.5 threshold for binary prediction
         prediction_probability: prediction_proba,
         model_type: latest_performance&.model_type || 'Unknown',
         model_version: latest_performance&.model_version || 'v1.0',
