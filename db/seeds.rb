@@ -3,7 +3,7 @@
 require 'csv'
 
 # adjust to wherever you’ve put your CSV
-csv_path = Rails.root.join('training_data', 'training_data.csv')
+csv_path = Rails.root.join('training_data', 'nhanes_diabetes.csv')
 
 # open and iterate
 CSV.foreach(csv_path, headers: true, col_sep: ';') do |row|

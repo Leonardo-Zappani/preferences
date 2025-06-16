@@ -4,7 +4,7 @@ require 'libsvm/node'
 
 class PredictionTest < ActiveSupport::TestCase
 
-  PATH_TO_TRAIN_DATA = "/training_data/training_data.csv"
+  PATH_TO_TRAIN_DATA = "/training_data/nhanes_diabetes.csv"
   PATH_TO_TRAINED_MODEL = "/training_data/svm_trained_model.csv"
 
   test "should not save prediction without height and weight" do

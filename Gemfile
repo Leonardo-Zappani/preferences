@@ -71,3 +71,8 @@ gem "tailwindcss-rails", "~> 4.2"
 
 # Machine Learning
 gem 'rumale'
+gem 'pycall'
+gem 'pycall_thread', '~> 0.1.3'
+gem 'sidekiq'
+gem 'sidekiq-cron', '~> 1.5'
+
