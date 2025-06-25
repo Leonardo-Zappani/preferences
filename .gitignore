@@ -26,6 +26,7 @@ Thumbs.db
 # Dependências
 node_modules/
 vendor/bundle/
+venv/
 
 # Arquivos de ambiente
 .env
@@ -44,4 +45,5 @@ vendor/bundle/
 
 # Arquivos de lock (exceto Gemfile.lock)
 package-lock.json
-yarn.lock 
+yarn.lock
+
