@@ -1,0 +1,49 @@
+# Ignorar pasta tmp
+tmp/
+
+# Logs
+log/
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Arquivos de cache
+.cache/
+*.cache
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependências
+node_modules/
+vendor/bundle/
+venv/
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos de banco de dados
+*.sqlite3
+*.db
+
+# Arquivos de backup
+*.bak
+*.backup
+
+# Arquivos de lock (exceto Gemfile.lock)
+package-lock.json
+yarn.lock
+
