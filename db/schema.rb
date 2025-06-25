@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_07_193011) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_16_023220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_07_193011) do
     t.string "model_type", null: false
     t.string "model_version", null: false
     t.datetime "prediction_date", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.float "bmi"
+    t.float "HbA1c_level"
+    t.float "blood_glucose_level"
+    t.string "smoking_history"
+    t.integer "hypertension"
+    t.integer "heart_disease"
+    t.string "risk_level"
     t.index ["model_version"], name: "index_predictions_on_model_version"
     t.index ["prediction_date"], name: "index_predictions_on_prediction_date"
   end

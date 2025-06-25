@@ -47,3 +47,5 @@ venv/
 package-lock.json
 yarn.lock
 
+
+/config/master.key

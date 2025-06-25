@@ -1,3 +1,5 @@
+# app/controllers/predictions_controller.rb
+
 class PredictionsController < ApplicationController
   # GET /predictions/new
   def new
@@ -9,9 +11,38 @@ class PredictionsController < ApplicationController
     @predictions = Prediction.all
   end
 
+  # GET /predictions/:id
+  def show
+    @prediction = Prediction.find(params[:id])
+  end
+
+  # POST /predictions/process_pdf
+  def process_pdf
+    unless params[:pdf_file].present?
+      return render json: { error: 'Nenhum arquivo PDF foi enviado' }, status: :bad_request
+    end
+
+    begin
+      file_content = params[:pdf_file].read
+      prediction = PdfOcrMapper.new(file_content).call
+
+      render json: {
+        success:       true,
+        prediction_id: prediction.id,
+        redirect_url:  prediction_path(prediction)
+      }, status: :ok
+
+    rescue PdfOcrMapper::ExtractionError => e
+      render json: { error: e.message }, status: :unprocessable_entity
+
+    rescue StandardError => e
+      Rails.logger.error("[PredictionsController#process_pdf] #{e.class}: #{e.message}")
+      render json: { error: 'Erro interno ao processar o PDF. Tente novamente.' }, status: :internal_server_error
+    end
+  end
+
   # POST /predictions
   def create
-    # Monta o hash inicial e calcula o BMI
     attrs = prediction_params.to_h.symbolize_keys
     height_m = attrs[:height].to_f / 100.0
 
@@ -22,38 +53,36 @@ class PredictionsController < ApplicationController
     end
 
     attrs[:bmi] = (attrs[:weight].to_f / (height_m**2)).round(1)
-
-    # Prepara o objeto para a view
     @prediction = Prediction.new(attrs)
 
     begin
-      # Chama o modelo Python
       prob = Ml::Predictor.risk(attrs.except(:height, :weight))
     rescue PyCall::PyError => e
-      Rails.logger.error e.full_message
+      Rails.logger.error("[PredictionsController#create] PyError: #{e.full_message}")
       flash.now[:alert] = "Erro interno ao calcular risco: #{e.message}"
       return render :new, status: :unprocessable_entity
     end
 
     @prediction.assign_attributes(
       prediction_probability: prob,
-      dm_label: (prob >= 0.5),
-      risk_level: classify(prob),
-      model_type: "GBC",
-      model_version: "v1",
-      prediction_date: Time.zone.now
+      dm_label:               (prob >= 0.5),
+      risk_level:             classify(prob),
+      model_type:             "GBC",
+      model_version:          "v1",
+      prediction_date:        Time.zone.now
     )
 
     if @prediction.risk.nil?
       @prediction.errors.add(:base, "Não foi possível calcular a previsão agora; tente novamente mais tarde.")
       render :new, status: :unprocessable_entity
 
-
     elsif @prediction.save
       render :show
+
     else
       render :new, status: :unprocessable_entity
     end
+
   rescue StandardError => e
     Rails.logger.error("[PredictionsController#create] unexpected error: #{e.class} #{e.message}")
     flash.now[:alert] = "Ocorreu um erro inesperado. Contate o suporte."
@@ -74,7 +103,7 @@ class PredictionsController < ApplicationController
     case prob
     when 0.0...0.33 then "Baixo"
     when 0.33...0.66 then "Médio"
-    else "Alto"
+    else                "Alto"
     end
   end
 end
