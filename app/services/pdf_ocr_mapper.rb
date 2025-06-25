@@ -16,52 +16,63 @@ class PdfOcrMapper
   # @raise  [ExtractionError] if parsing or save fails
   def call
     data = extract_data_from_pdf
-    raise ExtractionError, "Não foi possível extrair dados do PDF" unless data
+    raise ExtractionError, 'Não foi possível extrair dados do PDF' unless data
 
     p data.inspect
 
-    prediction = Prediction.new(
-      gender:              data['gender'],
-      age:                 data['age'].to_i,
-      height:              data['height'].to_i,
-      weight:              data['weight'].to_f,
-      HbA1c_level:         data['HbA1c_level'].to_f,
-      blood_glucose_level: data['blood_glucose_level'].to_i,
-      hypertension:        data['hypertension'].to_i,
-      heart_disease:       data['heart_disease'].to_i,
-      smoking_history:     data['smoking_history']
-    )
+    height = Float(data['height'])
+    weight = Float(data['weight'])
 
-    if prediction.save
-      prediction
-    else
-      raise ExtractionError, prediction.errors.full_messages.join(', ')
-    end
+    bmi = (weight / (height**2)).round(1)
+
+    Prediction.predict!(
+      gender: data['gender'],
+      age: data['age'].to_i,
+      height: data['height'].to_i,
+      weight: data['weight'].to_f,
+      HbA1c_level: data['HbA1c_level'].to_f,
+      blood_glucose_level: data['blood_glucose_level'].to_i,
+      hypertension: data['hypertension'].to_i,
+      heart_disease: data['heart_disease'].to_i,
+      smoking_history: data['smoking_history'],
+      bmi: bmi
+    )
   end
 
   private
 
   def extract_data_from_pdf
-    prompt = <<~PROMPT
-      Analise o documento PDF em anexo, que é um relatório de exame de saúde.
-      Extraia os seguintes campos e seus respectivos valores.
-      Retorne a resposta EXCLUSIVAMENTE em formato JSON, com as chaves em inglês e os valores formatados conforme as regras abaixo:
+    prompt = <<~PROMPT.freeze
+      Você receberá um relatório de exame de saúde em PDF.#{' '}
+      Extraia **somente** os campos listados abaixo e devolva um JSON válido – nada mais:
 
-      Regras de formatação:
-      - "gender": 'female' para "Feminino", 'male' para "Masculino".
-      - "age": deve ser um número inteiro.
-      - "height": deve ser um número inteiro (em cm).
-      - "weight": deve ser um número (pode ser decimal, em kg).
-      - "HbA1c_level": deve ser um número.
-      - "blood_glucose_level": deve ser um número inteiro.
-      - "hypertension": 0 para "Não", 1 para "Sim".
-      - "heart_disease": 0 para "Não", 1 para "Sim".
-      - "smoking_history": 'never' para "Nunca fumou", 'former' para "Ex-fumante", 'current' para "Fumante atual".
+      - gender: "female" para Feminino, "male" para Masculino
+      - age: número inteiro
+      - height: número inteiro (cm)
+      - weight: número (kg; pode ter decimais)
+      - HbA1c_level: número (pode ter decimais)
+      - blood_glucose_level: número inteiro (mg/dL)
+      - hypertension: 0 (Não) ou 1 (Sim)
+      - heart_disease: 0 (Não) ou 1 (Sim)
+      - smoking_history: "never" | "former" | "current" | "not current" | "ever"
+
+      Exemplo de saída (exatamente neste formato, sem comentários nem markdown):
+      {
+        "gender": "female",
+        "age": 42,
+        "height": 170,
+        "weight": 68.5,
+        "HbA1c_level": 5.7,
+        "blood_glucose_level": 130,
+        "hypertension": 0,
+        "heart_disease": 0,
+        "smoking_history": "never"
+      }
     PROMPT
 
     client = Gemini.new(
       credentials: { service: 'generative-language-api', api_key: Rails.application.credentials.google_api_key },
-      options:    { model: 'gemini-2.5-flash' }
+      options: { model: 'gemini-2.5-flash' }
     )
 
     encoded = Base64.strict_encode64(@file_content)
@@ -77,15 +88,15 @@ class PdfOcrMapper
       ]
     }
 
-    Rails.logger.info("[PdfOcrMapper] sending to Gemini…")
+    Rails.logger.info('[PdfOcrMapper] sending to Gemini…')
     response = client.generate_content(body)
     raw      = response.dig('candidates', 0, 'content', 'parts', 0, 'text')
     return nil unless raw
 
     json_str = raw
-                 .gsub(/```json/, '')
-                 .gsub(/```/, '')
-                 .strip
+               .gsub(/```json/, '')
+               .gsub(/```/, '')
+               .strip
 
     JSON.parse(json_str)
   rescue JSON::ParserError => e

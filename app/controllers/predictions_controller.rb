@@ -27,14 +27,12 @@ class PredictionsController < ApplicationController
       prediction = PdfOcrMapper.new(file_content).call
 
       render json: {
-        success:       true,
+        success: true,
         prediction_id: prediction.id,
-        redirect_url:  prediction_path(prediction)
+        redirect_url: prediction_path(prediction)
       }, status: :ok
-
     rescue PdfOcrMapper::ExtractionError => e
       render json: { error: e.message }, status: :unprocessable_entity
-
     rescue StandardError => e
       Rails.logger.error("[PredictionsController#process_pdf] #{e.class}: #{e.message}")
       render json: { error: 'Erro interno ao processar o PDF. Tente novamente.' }, status: :internal_server_error
@@ -65,11 +63,11 @@ class PredictionsController < ApplicationController
 
     @prediction.assign_attributes(
       prediction_probability: prob,
-      dm_label:               (prob >= 0.5),
-      risk_level:             classify(prob),
-      model_type:             "GBC",
-      model_version:          "v1",
-      prediction_date:        Time.zone.now
+      dm_label: (prob >= 0.5),
+      risk_level: classify(prob),
+      model_type: "GBC",
+      model_version: "v1",
+      prediction_date: Time.zone.now
     )
 
     if @prediction.risk.nil?
@@ -82,7 +80,6 @@ class PredictionsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   rescue StandardError => e
     Rails.logger.error("[PredictionsController#create] unexpected error: #{e.class} #{e.message}")
     flash.now[:alert] = "Ocorreu um erro inesperado. Contate o suporte."
@@ -103,7 +100,7 @@ class PredictionsController < ApplicationController
     case prob
     when 0.0...0.33 then "Baixo"
     when 0.33...0.66 then "Médio"
-    else                "Alto"
+    else "Alto"
     end
   end
 end
