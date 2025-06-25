@@ -22,26 +22,34 @@ class Prediction < ApplicationRecord
     clean = attrs.transform_keys(&:to_sym)
     p = new(clean)
 
-    prob = Ml::Predictor.risk(
-      age:                 p.age,
-      bmi:                 p.bmi,
-      HbA1c_level:         p.HbA1c_level,
-      blood_glucose_level: p.blood_glucose_level,
-      gender:              p.gender,
-      smoking_history:     p.smoking_history,
-      hypertension:        p.hypertension,
-      heart_disease:       p.heart_disease
-    )
+    begin
+      prob = Ml::Predictor.risk(
+        age:                 p.age,
+        bmi:                 p.bmi,
+        HbA1c_level:         p.HbA1c_level,
+        blood_glucose_level: p.blood_glucose_level,
+        gender:              p.gender,
+        smoking_history:     p.smoking_history,
+        hypertension:        p.hypertension,
+        heart_disease:       p.heart_disease
+      )
 
-    p.prediction_probability = prob
-    p.dm_label               = (prob >= 0.5)
-    p.risk_level             = p.classify(prob)
-    p.model_type             = "GradientBoostingClassifier"
-    p.model_version          = "final"
-    p.prediction_date        = Time.current
+      p.prediction_probability = prob
+      p.dm_label               = (prob >= 0.5)
+      p.risk_level             = p.classify(prob)
+      p.model_type             = "GradientBoostingClassifier"
+      p.model_version          = "final"
+      p.prediction_date        = Time.current
 
-    p.save!
-    p
+      p.save!
+      p
+    rescue MemoryError => e
+      Rails.logger.error("Memory error during prediction: #{e.message}")
+      raise PredictionError, "The prediction could not be completed due to memory constraints. Please try again with a smaller dataset or contact support."
+    rescue StandardError => e
+      Rails.logger.error("Error during prediction: #{e.message}")
+      raise PredictionError, "An error occurred during prediction. Please try again or contact support."
+    end
   end
 
   def formatted_probability

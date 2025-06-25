@@ -1,30 +1,37 @@
 # app/services/ml/predictor.rb
+require 'pycall/import'
+
 module Ml
   module Predictor
-    extend self
-    include PyCall::Import
+    extend PyCall::Import
 
-    MODEL_PATH    = Rails.root.join("storage","models","gbc_final.joblib").to_s
-    pyimport 'joblib', as: :jl
-    PIPELINE      = jl.load(MODEL_PATH)
+    MODEL_PATH = Rails.root.join('storage', 'models', 'gbc_final.joblib').to_s
 
-    # break out the steps
+    # import once at the top
+    pyimport 'joblib',  as: :jl
+    pyimport 'pandas', as: :pd
+
+    PIPELINE     = jl.load(MODEL_PATH)
     PREPROCESSOR = PIPELINE.named_steps['pre']
     CLASSIFIER   = PIPELINE.named_steps['clf']
 
+    # turn the instance method into a module‐function if you like,
+    # but you can also just call Predictor.risk
+    module_function
     def risk(attrs)
-      pyimport 'pandas', as: :pd
-
       # 1) Build a 1-row DataFrame with string keys
       raw = attrs.transform_keys(&:to_s)
-      df  = pd.DataFrame.new([ raw ])
+      df  = pd.DataFrame.new([raw])
 
-      # 2) Run just the column transformer
+      # 2) Preprocess
       xt = PREPROCESSOR.transform(df)
 
-      # 3) Classify
-      proba = CLASSIFIER.predict_proba(xt)[0,1]
+      # 3) Predict
+      proba = CLASSIFIER.predict_proba(xt)[0, 1]
       proba.to_f
+    rescue PyCall::PyError => e
+      Rails.logger.error("[Ml::Predictor] PyCall failed: #{e.class} #{e.message}")
+      nil
     end
   end
 end

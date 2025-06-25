@@ -36,19 +36,28 @@ class PredictionsController < ApplicationController
     end
 
     @prediction.assign_attributes(
-      prediction_probability:     prob,
-      dm_label:        (prob >= 0.5),
-      risk_level:      classify(prob),
-      model_type:      "GBC",
-      model_version:   "v1",
+      prediction_probability: prob,
+      dm_label: (prob >= 0.5),
+      risk_level: classify(prob),
+      model_type: "GBC",
+      model_version: "v1",
       prediction_date: Time.zone.now
     )
 
-    if Prediction.table_exists? && @prediction.save
+    if @prediction.risk.nil?
+      @prediction.errors.add(:base, "Não foi possível calcular a previsão agora; tente novamente mais tarde.")
+      render :new, status: :unprocessable_entity
+
+
+    elsif @prediction.save
       render :show
     else
       render :new, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    Rails.logger.error("[PredictionsController#create] unexpected error: #{e.class} #{e.message}")
+    flash.now[:alert] = "Ocorreu um erro inesperado. Contate o suporte."
+    render :new, status: :internal_server_error
   end
 
   private
@@ -65,7 +74,7 @@ class PredictionsController < ApplicationController
     case prob
     when 0.0...0.33 then "Baixo"
     when 0.33...0.66 then "Médio"
-    else                "Alto"
+    else "Alto"
     end
   end
 end
