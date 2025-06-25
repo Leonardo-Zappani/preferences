@@ -76,3 +76,8 @@ gem 'pycall_thread', '~> 0.1.3'
 gem 'sidekiq'
 gem 'sidekiq-cron', '~> 1.5'
 
+
+gem "gemini-ai", "~> 4.2"
+
+gem "mini_magick", "~> 4.12"
+gem 'pdftoimage'
