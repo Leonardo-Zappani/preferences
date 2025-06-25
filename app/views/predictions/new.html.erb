@@ -1,4 +1,118 @@
-<div class="max-w-2xl mx-auto">
-  <h1 class="text-2xl font-semibold mb-6 text-white">Sera que voce tem pre-diabetes?</h1>
-  <%= render "form", prediction: @prediction %>
+<div class="max-w-7xl mx-auto">
+  <h1 class="text-2xl font-semibold mb-6 text-white text-center">Será que você tem pré-diabetes?</h1>
+  
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Manual Form Section -->
+    <div>
+      <h2 class="text-xl font-semibold mb-4 text-white">Preenchimento Manual</h2>
+      <%= render "form", prediction: @prediction %>
+    </div>
+    
+    <!-- PDF Upload Section -->
+    <div>
+      <h2 class="text-xl font-semibold mb-4 text-white">Upload de PDF</h2>
+      <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+        <div class="space-y-6">
+          <div class="text-center">
+            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+              <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <p class="mt-2 text-sm text-gray-300">
+              Faça upload de um relatório de exame em PDF para extrair automaticamente os dados
+            </p>
+          </div>
+          
+          <div class="space-y-4">
+            <div>
+              <label for="pdf_file" class="block mb-2 text-sm font-medium text-gray-200">
+                Selecionar arquivo PDF
+              </label>
+              <input type="file" 
+                     id="pdf_file" 
+                     accept=".pdf"
+                     class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white
+                            focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200
+                            file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0
+                            file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700
+                            hover:file:bg-blue-100">
+            </div>
+            
+            <div id="upload_status" class="hidden">
+              <div class="flex items-center space-x-2">
+                <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+                <span class="text-sm text-gray-300">Processando PDF...</span>
+              </div>
+            </div>
+            
+            <div id="upload_error" class="hidden">
+              <div class="bg-red-500/10 border border-red-500/20 text-red-200 px-4 py-3 rounded-lg">
+                <span id="error_message"></span>
+              </div>
+            </div>
+            
+            <button type="button" 
+                    id="process_pdf_btn"
+                    class="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700
+                           text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200
+                           transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
+              Processar PDF e Gerar Previsão
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const fileInput = document.getElementById('pdf_file');
+  const processBtn = document.getElementById('process_pdf_btn');
+  const uploadStatus = document.getElementById('upload_status');
+  const uploadError = document.getElementById('upload_error');
+  const errorMessage = document.getElementById('error_message');
+  
+  // Enable/disable button based on file selection
+  fileInput.addEventListener('change', function() {
+    processBtn.disabled = !this.files.length;
+  });
+  
+  processBtn.addEventListener('click', function() {
+    if (!fileInput.files.length) return;
+    
+    const formData = new FormData();
+    formData.append('pdf_file', fileInput.files[0]);
+    
+    // Show loading state
+    processBtn.disabled = true;
+    uploadStatus.classList.remove('hidden');
+    uploadError.classList.add('hidden');
+    
+    fetch('<%= process_pdf_predictions_path %>', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Redirect to the prediction result
+        window.location.href = data.redirect_url;
+      } else {
+        throw new Error(data.error || 'Erro desconhecido');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      errorMessage.textContent = error.message || 'Erro ao processar o PDF';
+      uploadError.classList.remove('hidden');
+      processBtn.disabled = false;
+    })
+    .finally(() => {
+      uploadStatus.classList.add('hidden');
+    });
+  });
+});
+</script>

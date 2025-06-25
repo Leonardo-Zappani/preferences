@@ -1,16 +1,77 @@
-<div class="container mx-auto p-6  text-white">
-  <h1 class="text-2xl font-semibold">Resultado:</h1>
-  <p class="mt-2 <%= @prediction.dm_label ? 'text-red-600' : 'text-green-600' %>">
-    <%= @prediction.dm_label ? "Positivo para Diabetes/Pre-DM" : "Negativo" %>
-  </p>
+<div class="max-w-4xl mx-auto">
+  <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/10">
+    <h1 class="text-2xl font-semibold mb-6 text-white">Resultado da Análise</h1>
+    
+    <div class="space-y-6">
+      <!-- Result Summary -->
+      <div class="text-center p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg border border-blue-500/20">
+        <h2 class="text-xl font-semibold mb-2 text-white">Diagnóstico</h2>
+        <p class="text-2xl font-bold <%= @prediction.dm_label? ? 'text-red-400' : 'text-green-400' %>">
+          <%= @prediction.dm_label? ? 'Positivo para Diabetes' : 'Negativo para Diabetes' %>
+        </p>
+      </div>
 
-  <%# If editing is allowed, re-render the form partial %>
-  <div class="mt-6">
-    <button type="button"
-            onclick="window.location.href='<%= root_path %>'"
-            class="w-full text-white py-3 bg-indigo-600 hover:bg-indigo-700 font-bold rounded-xl shadow-md hover:shadow-lg transition">
-      Voltar
-    </button>
+      <!-- Detailed Results -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+          <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+            <span class="text-gray-300">Nível de Risco:</span>
+            <span class="<%= @prediction.risk_level == 'Alto' ? 'text-red-400' : @prediction.risk_level == 'Médio' ? 'text-yellow-400' : 'text-green-400' %> font-semibold">
+              <%= @prediction.risk_level %>
+            </span>
+          </div>
+
+          <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+            <span class="text-gray-300">Probabilidade:</span>
+            <span class="font-semibold text-white"><%= @prediction.formatted_probability %></span>
+          </div>
+
+          <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+            <span class="text-gray-300">Modelo Utilizado:</span>
+            <span class="text-gray-200"><%= @prediction.model_type %> (v<%= @prediction.model_version %>)</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+            <span class="text-gray-300">Data da Análise:</span>
+            <span class="text-gray-200"><%= @prediction.prediction_date.strftime("%d/%m/%Y %H:%M") %></span>
+          </div>
+
+          <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+            <span class="text-gray-300">Gênero:</span>
+            <span class="text-gray-200"><%= @prediction.gender == 'male' ? 'Masculino' : 'Feminino' %></span>
+          </div>
+
+          <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+            <span class="text-gray-300">Idade:</span>
+            <span class="text-gray-200"><%= @prediction.age %> anos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 pt-6">
+        <%= link_to new_prediction_path, 
+            class: "flex-1 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700
+                   text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200
+                   transform hover:-translate-y-0.5 text-center" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Nova Análise
+        <% end %>
+        
+        <%= link_to predictions_path, 
+            class: "flex-1 py-3 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800
+                   text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200
+                   transform hover:-translate-y-0.5 text-center" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+          Ver Histórico
+        <% end %>
+      </div>
+    </div>
   </div>
-
 </div>
