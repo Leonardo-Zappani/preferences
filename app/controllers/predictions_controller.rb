@@ -53,12 +53,11 @@ class PredictionsController < ApplicationController
     attrs[:bmi] = (attrs[:weight].to_f / (height_m**2)).round(1)
     @prediction = Prediction.new(attrs)
 
-    begin
-      prob = Ml::Predictor.risk(attrs.except(:height, :weight))
-    rescue PyCall::PyError => e
-      Rails.logger.error("[PredictionsController#create] PyError: #{e.full_message}")
-      flash.now[:alert] = "Erro interno ao calcular risco: #{e.message}"
-      return render :new, status: :unprocessable_entity
+    prob = Ml::Predictor.risk(attrs.except(:height, :weight))
+
+    if prob.nil?
+      @prediction.errors.add(:base, "Não foi possível calcular a previsão agora; tente novamente mais tarde.")
+      render :new, status: :unprocessable_entity
     end
 
     @prediction.assign_attributes(
@@ -70,20 +69,12 @@ class PredictionsController < ApplicationController
       prediction_date: Time.zone.now
     )
 
-    if @prediction.risk.nil?
-      @prediction.errors.add(:base, "Não foi possível calcular a previsão agora; tente novamente mais tarde.")
-      render :new, status: :unprocessable_entity
-
-    elsif @prediction.save
+    if @prediction.save
       render :show
 
     else
       render :new, status: :unprocessable_entity
     end
-  rescue StandardError => e
-    Rails.logger.error("[PredictionsController#create] unexpected error: #{e.class} #{e.message}")
-    flash.now[:alert] = "Ocorreu um erro inesperado. Contate o suporte."
-    render :new, status: :internal_server_error
   end
 
   private

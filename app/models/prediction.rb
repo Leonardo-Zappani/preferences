@@ -1,6 +1,12 @@
 class Prediction < ApplicationRecord
   enum gender:          { male: 'male', female: 'female' }
-  enum smoking_history: { never: 'never', former: 'former', current: 'current' }
+  enum smoking_history: {
+    never: 'never',
+    former: 'former',
+    current: 'current',
+    not_current: 'not current',
+    ever: 'ever'
+  }
 
   before_validation :compute_bmi, if: -> { height && weight && bmi.nil? }
 

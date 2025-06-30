@@ -17,7 +17,6 @@ module Ml
 
     # turn the instance method into a module‐function if you like,
     # but you can also just call Predictor.risk
-    module_function
     def risk(attrs)
       # 1) Build a 1-row DataFrame with string keys
       raw = attrs.transform_keys(&:to_s)
