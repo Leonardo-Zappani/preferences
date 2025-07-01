@@ -2,7 +2,7 @@
 require 'pycall/import'
 
 module Ml
-  module Predictor
+  class Predictor
     extend PyCall::Import
 
     MODEL_PATH = Rails.root.join('storage', 'models', 'gbc_final.joblib').to_s
@@ -17,7 +17,7 @@ module Ml
 
     # turn the instance method into a module‐function if you like,
     # but you can also just call Predictor.risk
-    def risk(attrs)
+    def self.risk(attrs)
       # 1) Build a 1-row DataFrame with string keys
       raw = attrs.transform_keys(&:to_s)
       df  = pd.DataFrame.new([raw])

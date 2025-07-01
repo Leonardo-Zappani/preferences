@@ -51,23 +51,7 @@ class PredictionsController < ApplicationController
     end
 
     attrs[:bmi] = (attrs[:weight].to_f / (height_m**2)).round(1)
-    @prediction = Prediction.new(attrs)
-
-    prob = Ml::Predictor.risk(attrs.except(:height, :weight))
-
-    if prob.nil?
-      @prediction.errors.add(:base, "Não foi possível calcular a previsão agora; tente novamente mais tarde.")
-      render :new, status: :unprocessable_entity
-    end
-
-    @prediction.assign_attributes(
-      prediction_probability: prob,
-      dm_label: (prob >= 0.5),
-      risk_level: classify(prob),
-      model_type: "GBC",
-      model_version: "v1",
-      prediction_date: Time.zone.now
-    )
+    @prediction = Prediction.predict!(attrs)
 
     if @prediction.save
       render :show
