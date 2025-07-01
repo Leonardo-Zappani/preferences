@@ -63,8 +63,10 @@ class Prediction < ApplicationRecord
 
       p "probability: #{prob.inspect}"
 
+      prob = prob[:probability].to_f
+      p "final probability: #{prob}"
       p.prediction_probability = prob
-      p.dm_label               = (prob >= 0.5)
+      p.dm_label               =  prob >= 0.5
       p.risk_level             = p.classify(prob)
       p.model_type             = "GBM"
       p.model_version          = "final"

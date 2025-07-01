@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """
-Treina um pipeline completo: feature-engineering, imputação, encoding (OneHot), LightGBM, e ThresholdClassifier.
-Faz otimização de hiperparâmetros com Optuna e salva o pipeline em storage/models/gbm_optuna.joblib.
-Gera também storage/models/metrics.json.
+Treina um pipeline completo: feature-engineering, imputação, encoding (OneHot), LightGBM.
+Faz otimização de hiperparâmetros com Optuna e salva em storage/models/gbm_optuna.joblib.
+Gera também storage/models/metrics.json contendo as métricas e o limiar ótimo.
 """
 from pathlib import Path
 import json
@@ -22,8 +22,6 @@ from sklearn.metrics import (
 )
 from lightgbm import LGBMClassifier
 
-from threshold_classifier import ThresholdClassifier
-
 # ── Configurações ────────────────────────────────────────────────────────
 ROOT         = Path(__file__).resolve().parent.parent
 DATA_DIR     = ROOT / "storage" / "data"
@@ -33,32 +31,30 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 PIPE_PATH    = MODEL_DIR / "gbm_optuna.joblib"
 METRICS_PATH = MODEL_DIR / "metrics.json"
 
-# 8 colunas originais que queremos usar
+# colunas originais e derivadas
 NUM_ORIG = ["age", "bmi", "HbA1c_level", "blood_glucose_level"]
 CAT_ORIG = ["gender", "smoking_history", "hypertension", "heart_disease"]
-# 3 colunas derivadas
-DERIVED = ["age_bmi", "bmi_cat", "risk_count"]
+DERIVED  = ["age_bmi", "bmi_cat", "risk_count"]
 
-# Para o ColumnTransformer:
+# Para pré-processamento
 NUM_FEATS = NUM_ORIG + ["age_bmi", "risk_count"]
 CAT_FEATS = CAT_ORIG + ["bmi_cat"]
 
 
 def load_and_select():
-    # Carrega e concatena
-    kag = pd.read_csv(DATA_DIR / "diabetes_prediction_dataset.csv"); kag["domain"]=0
-    nh  = pd.read_csv(DATA_DIR / "nhanes_diabetes.csv");             nh["domain"]=1
-    df  = pd.concat([kag, nh], ignore_index=True)
+    kag = pd.read_csv(DATA_DIR / "diabetes_prediction_dataset.csv")
+    kag["domain"] = 0
+    nh  = pd.read_csv(DATA_DIR / "nhanes_diabetes.csv")
+    nh["domain"] = 1
+    df = pd.concat([kag, nh], ignore_index=True)
 
-    # Filtra e converte target
     df = df[df["diabetes"].notna()].copy()
     df["diabetes"] = df["diabetes"].astype(int)
 
-    # Cria features derivadas
-    df["age_bmi"]    = df["age"] * df["bmi"]
-    df["bmi_cat"]    = pd.cut(
-        df["bmi"],
-        bins=[0, 18.5, 25, 30, np.inf],
+    # features derivadas
+    df["age_bmi"] = df["age"] * df["bmi"]
+    df["bmi_cat"] = pd.cut(
+        df["bmi"], bins=[0, 18.5, 25, 30, np.inf],
         labels=["under", "normal", "over", "obese"],
     )
     df["risk_count"] = (
@@ -66,7 +62,6 @@ def load_and_select():
         + (df["smoking_history"].fillna("never") != "never").astype(int)
     )
 
-    # Seleciona apenas as colunas que vamos usar
     cols = NUM_ORIG + CAT_ORIG + DERIVED + ["diabetes"]
     return df[cols].copy()
 
@@ -81,18 +76,17 @@ def objective(trial, X, y):
         "subsample":         trial.suggest_float("subsample", 0.6, 1.0),
         "colsample_bytree":  trial.suggest_float("colsample_bytree", 0.6, 1.0),
         "class_weight":      "balanced",
-        "objective":         "binary",
         "random_state":      42,
         "verbosity":         -1,
     }
     cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=42)
-    f1s = []
+    scores = []
     for tr_i, va_i in cv.split(X, y):
-        m = LGBMClassifier(**params)
-        m.fit(X[tr_i], y[tr_i])
-        preds = m.predict(X[va_i])
-        f1s.append(f1_score(y[va_i], preds))
-    return -np.mean(f1s)
+        model = LGBMClassifier(**params)
+        model.fit(X[tr_i], y[tr_i])
+        preds = model.predict(X[va_i])
+        scores.append(f1_score(y[va_i], preds))
+    return -np.mean(scores)
 
 
 def train():
@@ -100,68 +94,63 @@ def train():
     y  = df.pop("diabetes")
     X  = df
 
-    # Split
+    # split dados
     X_tr, X_val, y_tr, y_val = train_test_split(
         X, y, test_size=0.2, stratify=y, random_state=42
     )
 
-    # Pré-processador: escala numéricas e one-hot em categóricas
+    # pré-processador
     pre = ColumnTransformer([
         ("num", StandardScaler(), NUM_FEATS),
         ("cat", OneHotEncoder(handle_unknown="ignore"), CAT_FEATS),
-    ], remainder="drop")
+    ])
 
-    # Transforma para arrays numéricos antes do Optuna
-    X_tr_pre = pre.fit_transform(X_tr)
+    # aplica pre nos dados
+    X_tr_pre  = pre.fit_transform(X_tr)
     X_val_pre = pre.transform(X_val)
 
-    # Optuna
+    # otimização com Optuna
     study = optuna.create_study(direction="minimize")
     study.optimize(lambda t: objective(t, X_tr_pre, y_tr.values), n_trials=40, timeout=1800)
 
     best_params = study.best_trial.params
-    best_params.update({
-        "class_weight": "balanced",
-        "objective":    "binary",
-        "random_state": 42,
-        "verbosity":   -1,
-    })
+    best_params.update({"class_weight":"balanced","random_state":42,"verbosity":-1})
 
-    # Treina o modelo final
+    # treino final
     clf = LGBMClassifier(**best_params)
     clf.fit(X_tr_pre, y_tr)
 
-    # Determina threshold ótimo
-    proba_val = clf.predict_proba(X_val_pre)[:,1]
-    prec, rec, thr = precision_recall_curve(y_val, proba_val)
+    # calcula probas no val
+    proba = clf.predict_proba(X_val_pre)[:,1]
+    prec, rec, thr = precision_recall_curve(y_val, proba)
     f1s = 2*prec*rec/(prec+rec+1e-12)
-    idx = f1s.argmax()
-    best_thr = float(thr[idx])
+    best_idx = f1s.argmax()
+    best_thr = float(thr[best_idx])
 
-    # Pipeline final: pre → threshold
+    # pipeline pré + modelo
     final_pipe = Pipeline([
-        ("pre",    pre),
-        ("thresh", ThresholdClassifier(estimator=clf, threshold=best_thr)),
+        ("pre", pre),
+        ("clf", clf),
     ])
 
-    # Salva pipeline e métricas
+    # salva pipeline e métricas
     joblib.dump(final_pipe, PIPE_PATH, compress=3)
     print(f"✅ Pipeline salvo em {PIPE_PATH}")
 
-    y_pred = (proba_val >= best_thr).astype(int)
+    # métricas e limiar
+    y_pred = (proba >= best_thr).astype(int)
     metrics = {
         "accuracy":           accuracy_score(y_val, y_pred),
         "precision":          precision_score(y_val, y_pred, zero_division=0),
         "recall":             recall_score(y_val, y_pred, zero_division=0),
-        "f1_score":           f1s[idx],
+        "f1_score":           f1s[best_idx],
         "total_predictions":  int(len(y_val)),
         "correct_predictions":int((y_pred==y_val).sum()),
         "best_threshold":     best_thr
     }
-    with open(METRICS_PATH, "w") as fp:
-        json.dump(metrics, fp, indent=2)
+    with open(METRICS_PATH, "w") as f:
+        json.dump(metrics, f, indent=2)
     print(f"✅ Métricas salvas em {METRICS_PATH}")
-
 
 if __name__ == "__main__":
     train()
