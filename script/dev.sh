@@ -6,7 +6,7 @@ if lsof -iTCP:3000 -sTCP:LISTEN -t >/dev/null; then
 fi
 
 # Ativa o ambiente virtual
-source venv/bin/activate
+source venv/bin/activate19
 export PYTHON="$PWD/venv/bin/python"
 export PYTHON_LIBRARY="$PWD/venv/lib/libpython3.12.dylib"
 

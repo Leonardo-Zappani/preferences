@@ -47,15 +47,18 @@ class Prediction < ApplicationRecord
 
     begin
       p "prediction: #{clean.inspect}"
+
+
+
       prob = Ml::Predictor.risk(
-        age:                 p.age,
-        bmi:                 p.bmi,
-        HbA1c_level:         p.HbA1c_level,
-        blood_glucose_level: p.blood_glucose_level,
+        age:                 p.age.to_i,
+        bmi:                 p.bmi.to_f,
+        HbA1c_level:         p.HbA1c_level.to_f,
+        blood_glucose_level: p.blood_glucose_level.to_f,
         gender:              p.gender,
         smoking_history:     p.smoking_history,
-        hypertension:        p.hypertension,
-        heart_disease:       p.heart_disease
+        hypertension:        p.hypertension.to_i,
+        heart_disease:       p.heart_disease.to_i
       )
 
       p "probability: #{prob.inspect}"
@@ -63,7 +66,7 @@ class Prediction < ApplicationRecord
       p.prediction_probability = prob
       p.dm_label               = (prob >= 0.5)
       p.risk_level             = p.classify(prob)
-      p.model_type             = "GBC"
+      p.model_type             = "GBM"
       p.model_version          = "final"
       p.prediction_date        = Time.current
 

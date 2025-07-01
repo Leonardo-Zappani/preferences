@@ -1,36 +1,65 @@
-# app/services/ml/predictor.rb
-require 'pycall/import'
+require "pycall"
 
 module Ml
   class Predictor
-    extend PyCall::Import
+    PD     = PyCall.import_module("pandas")
+    JOBLIB = PyCall.import_module("joblib")
+    SYS    = PyCall.import_module("sys")
+    IMPORTLIB = PyCall.import_module("importlib")
 
-    MODEL_PATH = Rails.root.join('storage', 'models', 'gbc_final.joblib').to_s
+    PY_DIR = Rails.root.join("python").to_s
+    SYS.path.insert(0, PY_DIR) unless SYS.path.include?(PY_DIR)
 
-    # import once at the top
-    pyimport 'joblib',  as: :jl
-    pyimport 'pandas', as: :pd
+    # importa o threshold (já não precisamos do DataFrameTransformer!)
+    IMPORTLIB.import_module("threshold_classifier")
 
-    PIPELINE     = jl.load(MODEL_PATH)
-    PREPROCESSOR = PIPELINE.named_steps['pre']
-    CLASSIFIER   = PIPELINE.named_steps['clf']
+    MODEL_PATH = Rails.root.join("storage","models","gbm_optuna.joblib").to_s
+    PIPE = JOBLIB.load(MODEL_PATH)
 
-    # turn the instance method into a module‐function if you like,
-    # but you can also just call Predictor.risk
-    def self.risk(attrs)
-      # 1) Build a 1-row DataFrame with string keys
-      raw = attrs.transform_keys(&:to_s)
-      df  = pd.DataFrame.new([raw])
+    FEATURE_KEYS = %w[
+      age bmi HbA1c_level blood_glucose_level
+      gender smoking_history hypertension heart_disease
+    ].freeze
 
-      # 2) Preprocess
-      xt = PREPROCESSOR.transform(df)
+    DERIVED_KEYS = %w[age_bmi bmi_cat risk_count].freeze
+    ALL_KEYS     = FEATURE_KEYS + DERIVED_KEYS
 
-      # 3) Predict
-      proba = CLASSIFIER.predict_proba(xt)[0, 1]
-      proba.to_f
+    def self.risk(raw)
+      # 1) extrai e converte só as 8 features originais
+      f = {
+        "age"                 => raw["age"].to_i,
+        "bmi"                 => raw["bmi"].to_f,
+        "HbA1c_level"         => raw["HbA1c_level"].to_f,
+        "blood_glucose_level" => raw["blood_glucose_level"].to_f,
+        "gender"              => raw["gender"],         # "male"/"female"
+        "smoking_history"     => raw["smoking_history"],# e.g. "never"
+        "hypertension"        => raw["hypertension"].to_i,
+        "heart_disease"       => raw["heart_disease"].to_i,
+      }
+
+      # 2) gera as 3 features extras
+      f["age_bmi"]    = f["age"] * f["bmi"]
+      f["bmi_cat"]    = case f["bmi"]
+                        when ..18.5 then "under"
+                        when ..25   then "normal"
+                        when ..30   then "over"
+                        else             "obese"
+                        end
+      f["risk_count"] = f["hypertension"] +
+                        f["heart_disease"] +
+                        (f["smoking_history"] != "never" ? 1 : 0)
+
+      # 3) monta DataFrame com as 11 colunas que o pipeline espera
+      df = PD.DataFrame.new([f], columns: ALL_KEYS)
+
+      # 4) chama o pipeline
+      proba    = PIPE.predict_proba(df)[0][1].to_f
+      positive = PIPE.predict(df)[0] == 1
+
+      { probability: proba, positive: positive }
     rescue PyCall::PyError => e
-      Rails.logger.error("[Ml::Predictor] PyCall failed: #{e.class} #{e.message}")
-      nil
+      Rails.logger.error("[Ml::Predictor] PyCall Error: #{e.class} – #{e.message}")
+      raise PredictionError, "Erro ao gerar predição. Tente novamente."
     end
   end
 end

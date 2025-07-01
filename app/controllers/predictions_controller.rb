@@ -46,7 +46,6 @@ class PredictionsController < ApplicationController
 
     if height_m <= 0
       @prediction = Prediction.new
-      flash.now[:alert] = "Altura deve ser maior que zero"
       return render :new, status: :unprocessable_entity
     end
 

@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
       dates: @recent_performances.pluck(:training_date).map { |date| date.strftime("%Y-%m-%d") }
     }
 
-    @total_predictions = Prediction.count
+    @total_predictions = ModelPerformance.sum(:total_predictions)
     @total_correct = ModelPerformance.sum(:correct_predictions)
     @average_accuracy = ModelPerformance.average(:accuracy)&.round(4) || 0
     @model_versions = ModelPerformance.distinct.pluck(:model_version)
