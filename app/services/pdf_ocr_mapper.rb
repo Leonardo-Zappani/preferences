@@ -15,7 +15,7 @@ class PdfOcrMapper
   # @return [Prediction] the saved record
   # @raise  [ExtractionError] if parsing or save fails
   def call
-    data = extract_data_from_pdf
+    data = extract_data_only
     raise ExtractionError, 'Não foi possível extrair dados do PDF' unless data
 
     p data.inspect
@@ -37,6 +37,12 @@ class PdfOcrMapper
       smoking_history: data['smoking_history'],
       bmi: bmi
     )
+  end
+
+  # Performs OCR+parsing and returns extracted data without creating a prediction
+  # @return [Hash, nil] the extracted data or nil if extraction fails
+  def extract_data_only
+    extract_data_from_pdf
   end
 
   private
@@ -76,7 +82,7 @@ class PdfOcrMapper
     )
 
     encoded = Base64.strict_encode64(@file_content)
-    body = {
+    body = {   
       contents: [
         {
           role: 'user',

@@ -24,13 +24,16 @@ class PredictionsController < ApplicationController
 
     begin
       file_content = params[:pdf_file].read
-      prediction = PdfOcrMapper.new(file_content).call
+      extracted_data = PdfOcrMapper.new(file_content).extract_data_only
 
-      render json: {
-        success: true,
-        prediction_id: prediction.id,
-        redirect_url: prediction_path(prediction)
-      }, status: :ok
+      if extracted_data
+        render json: {
+          success: true,
+          data: extracted_data
+        }, status: :ok
+      else
+        render json: { error: 'Não foi possível extrair dados do PDF' }, status: :unprocessable_entity
+      end
     rescue PdfOcrMapper::ExtractionError => e
       render json: { error: e.message }, status: :unprocessable_entity
     rescue StandardError => e
